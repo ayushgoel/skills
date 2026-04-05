@@ -28,6 +28,14 @@ Do not install custom skills under `~/.cursor/skills-cursor/`; that tree is rese
 
 ---
 
+## kotlin-code-reviewer
+
+Principal-level Kotlin PR and code reviewer. Covers architecture, library-first design, Kotlin idioms, coroutine safety, and AI agent prompt quality.
+
+- **In this repo:** `kotlin-code-reviewer/` — copy into your Cursor skills location as described above.
+
+---
+
 ## foam-notes
 
 Helps maintain a Foam knowledge graph. **Open the Foam repository as the Cursor workspace** when using this skill so the agent reads and writes notes in the correct project.
