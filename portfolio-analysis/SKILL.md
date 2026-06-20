@@ -30,7 +30,7 @@ For every stock in the portfolio, use your search tools (or web search if availa
 
 ### 4. Provide a Decision
 Based on the analysis, provide a **Buy / Hold / Sell** decision for each stock. 
-*Crucial Context*: Assume the user is a high net worth individual (HNI) with a portfolio valuation greater than 5 Crore. This means the investment strategy should lean towards wealth preservation, stable growth, and risk management. 
+*Crucial Context*: Assume the user is a high net worth individual (HNI) with a portfolio valuation greater than 5 Crore. This means the investment strategy should lean towards wealth preservation, stable growth, and risk management for 80% of the portfolio. Rest 20% should be invested in wealth generation mode. 
 - *Buy*: If the stock shows strong growth, profitability, reasonable valuation, increasing promoter holding, and consistent dividends.
 - *Hold*: If the stock is stable but lacks strong growth catalysts, or is fairly valued.
 - *Sell*: If the company is showing declining profitability, poor growth, decreasing promoter holding, or is significantly overvalued without justification.
