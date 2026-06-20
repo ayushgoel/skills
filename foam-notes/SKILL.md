@@ -25,6 +25,8 @@ The reference docs say “the workspace”; that means that root for the current
 
 ### Step 1 — Determine new vs. existing
 
+**Default to updating. Only create a new note as a last resort.**
+
 Before writing anything:
 
 1. **Confirm scope** — Use the workspace root that holds the Foam graph. If unclear among multiple workspace folders, prefer the one that already contains note `.md` files and hub pages such as `_HOME.md`.
@@ -33,11 +35,16 @@ Before writing anything:
    - If there is no good search string, or search results are inconclusive, list every `.md` file under that root (Glob `*.md` from the workspace root downward).
 3. Check for an exact or near-exact filename match for the topic.
 4. If still unclear, scan the `**Related:**` lines and section headings of candidate files.
+5. **Check for parent or sibling topics** — Even with no direct filename match, ask: *does this content naturally belong inside an existing note as a subsection?* A concept that is a variant, refinement, sub-technique, or application of an existing topic should live as a `##` section inside that note, not as a standalone file.
 
-**Decision:**
+**Decision (in order — stop at first match):**
 
-- Match found → follow **Update Note Workflow** below.
-- No match → follow **New Note Workflow** below.
+1. Exact or near-exact filename match → **Update Note Workflow**.
+2. Content is a sub-topic, variant, or application of an existing note → **Update Note Workflow** (add a `##` section to that note).
+3. Content spans multiple existing notes as new connective insight → **Update Note Workflow** on each relevant note.
+4. Topic is genuinely standalone, has no plausible parent note, and is large enough to deserve its own file → **New Note Workflow**.
+
+When in doubt between options 2/3 and 4, choose update. New files add navigation cost; subsections are free.
 
 ---
 
@@ -94,10 +101,11 @@ Before writing anything:
 
 1. Uses the open Foam workspace as scope.
 2. Runs a targeted search for `lsm`, `merge tree`, `log-structured`, and similar from the workspace root; if nothing matches, lists all `.md` files.
-3. Finds no existing `Log-Structured Merge Trees.md` (or equivalent); chooses **New Note Workflow**.
-4. Reads `references/note-templates.md` and `references/foam-conventions.md`.
-5. Creates `Log-Structured Merge Trees.md` with a full `**Related:**` line, sections from the template, and facts only from the paste.
-6. Opens 3–6 related notes (e.g. storage engines, B-trees), adds `[[Log-Structured Merge Trees]]` to their `**Related:**` or body where it fits, and adds the new note to `_HOME.md` if a section applies.
+3. Finds no exact `Log-Structured Merge Trees.md`, but finds `Storage Engines.md` which already covers B-Trees and compaction strategies — checks whether LSM trees are a sub-topic of storage engines (they are).
+4. **Defaults to updating `Storage Engines.md`** with a new `## Log-Structured Merge Trees` section rather than creating a new file.
+5. Only if the content is large enough to be unwieldy inside `Storage Engines.md` (many sub-sections, lengthy explanations) does it create `Log-Structured Merge Trees.md` and link back from `Storage Engines.md`.
+6. Reads `references/note-templates.md` and `references/foam-conventions.md` before writing.
+7. Updates `**Related:**` lines in touched notes; adds a wikilink in `_HOME.md` if a section applies.
 
 ---
 
@@ -106,7 +114,9 @@ Before writing anything:
 | Situation | Action |
 |---|---|
 | Topic file exists | Update workflow — add only new info |
-| Topic file missing | New note workflow — create + link |
-| Partial match (sub-topic of existing) | Add a new `##` section inside the existing note |
+| Sub-topic, variant, or application of an existing topic | Add a `##` section inside the existing note — **do not create a new file** |
+| Insight that spans several existing notes | Update each relevant note; no new file needed |
+| No filename match but a parent concept exists | Add a `##` section to the parent note |
+| Genuinely new, standalone topic with no plausible parent | New note workflow — create + link |
 | Huge new topic with distinct subtopics | Create a new file + link from the parent note |
 | Source contradicts existing note | Add a note under the relevant section, do not silently overwrite |
