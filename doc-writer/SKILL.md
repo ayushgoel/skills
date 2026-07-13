@@ -68,7 +68,7 @@ Good candidates:
 
 ## Style Rules
 
-- Do not use two adjacent hyphens in prose.
+- Do not use em dashes, two adjacent hyphens, or semicolons in prose. Rewrite with commas, periods, or separate sentences so it sounds human.
 - Avoid stock AI phrasing such as "delve", "comprehensive", "robust", "seamless", "game-changing", "leverage", and "unlock".
 - Do not add a section just because a template usually has one.
 - Do not repeat the same idea in summary, context, and conclusion.
