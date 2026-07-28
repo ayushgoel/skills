@@ -12,6 +12,15 @@ description: >-
 
 Write concise docs with a clear table of contents, only the sections the doc type needs, and no repeated content.
 
+## Local Style
+
+- Start with `Summary` for explainers and design docs. Include purpose and scope, key themes, and the most important insights.
+- Use numbered sections for long technical docs. Keep the top level easy to scan.
+- Use tables for components, decision factors, options, scope estimates, status, and ownership.
+- Put heavy detail in appendices instead of interrupting the main argument.
+- Name the recommendation early in DACI docs, then support it with data and trade-offs.
+- Prefer concrete system language over generic template language.
+
 ## First Question
 
 If the target format is not explicit, ask: "Is this a Confluence page?"
@@ -36,10 +45,11 @@ If yes, use Confluence-friendly formatting and macros judiciously. Prefer macros
 
 Use these as topic budgets, not rigid headings. Merge related topics to keep the doc small.
 
-- High-level design: objective, goals and non-goals, context, requirements, design, alternatives, performance, observability, rollout, rollback strategy, security, privacy, risks, work log, open questions, references
-- DACI decision doc: decision, status, impact, driver, approver, contributors, informed, due date, relevant data, background, options, decision factors, recommendation, outcome, action items, references
+- High-level design: summary, objective, goals and non-goals, context, requirements, architecture overview, key components, trust boundaries, lifecycle or flow, design principles, alternatives, performance, observability, rollout, rollback strategy, security, privacy, risks, work log, open questions, references
+- Deep technical design: context and goals, architecture overview, key design principles, data or table design, core components, interfaces, feature gates, migration plan, implementation phases, constraints, risks, references
+- DACI decision doc: status, impact, one-way or two-way door, driver, approver, recommendation, contributors, informed, due date, resources, background, relevant data, decision factors, options, outcome, action items, appendices, references
 - How-to or runbook: summary, alert or trigger, severity, impact, diagnostics, mitigation, verification, troubleshooting, follow-up, references
-- ADR or design decision: context, decision, options, trade-offs, consequences, rollout, rollback, references
+- On-call handover: date, participants, discussion topics, report, action items, decisions, references
 - Technical explainer: summary, concepts, architecture or flow, dependencies, edge cases, failure modes, references
 - Project update: summary, status, progress, risks, decisions needed, next steps, references
 - Proposal: summary, problem, proposal, impact, risks, open questions, references
@@ -47,9 +57,26 @@ Use these as topic budgets, not rigid headings. Merge related topics to keep the
 
 ## DACI Guidance
 
-Use DACI for important decisions, especially when ownership or approval is unclear. Do not bury DACI inside a general design doc; create a separate DACI when the decision needs explicit accountability.
+Use DACI for important decisions. Do not bury DACI inside a general design doc. Create a separate DACI when the decision needs explicit accountability.
 
-Prefer a compact decision header with status, impact, driver, approver, contributors, informed, due date, and resources. Use a table for the header in Confluence.
+Prefer a compact decision header with status, impact, driver, approver, recommendation, contributors, informed, due date, and resources. Use a table for the header in Confluence.
+
+Use a decision factor matrix with weighting and rationale. Compare options against those factors. End the main body with a clear recommendation and action items. Put sizing, raw scope, or detailed estimates in appendices.
+
+## Technical Detail Style
+
+For architecture and lifecycle docs:
+- Explain the path from user action to system response.
+- Show components in a table with each component's role.
+- Call out deployment, trust, auth, tenant routing, policy, and data boundaries when relevant.
+- Include Mermaid diagrams for architecture, flow, and connection management when text alone is dense.
+- Keep low-level API payloads, exhaustive config, and raw query details out of the main HLD unless they decide the design.
+
+For implementation-heavy docs:
+- State the invariant first, such as "API behavior is unchanged."
+- Name the single routing, gating, or decision point.
+- Show phase plans and migration windows.
+- Call out kill switches, feature gates, and rollback paths.
 
 ## Image Prompts
 
@@ -59,6 +86,8 @@ Use this pattern:
 ```markdown
 Image prompt: Create a clean architecture diagram showing [components], [data flow], [external dependencies], and [failure or rollback path]. Use labels that match the section text.
 ```
+
+If the document already contains a Mermaid diagram, add an image prompt only when a polished visual would help reviewers or executives.
 
 Good candidates:
 - Architecture, component, data flow, and sequence diagrams
