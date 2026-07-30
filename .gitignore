@@ -1,0 +1,6 @@
+.DS_Store
+
+# Root-level runtime outputs from portfolio analysis.
+/*.analysis.md
+/*.cleaned.csv
+/*.screener-data.json

@@ -1,36 +1,41 @@
 # Skills
 
-Personal agent skills. Each skill is a directory that contains `SKILL.md` (and optional files such as `references/`).
+Personal source repository for reusable agent skills. Each top-level skill
+directory contains a `SKILL.md` file and may include supporting files such as
+`references/`.
 
-## Quick start
+## Install
 
-Install any skill with:
+Install one skill:
 
 ```bash
-npx skills add ayushgoel/skills --path skills/<skill-name>
+npx skills add ayushgoel/skills --path <skill-name>
 ```
 
-OR install all with:
+For example:
+
+```bash
+npx skills add ayushgoel/skills --path doc-writer
+```
+
+Install every skill:
 
 ```bash
 npx skills add ayushgoel/skills
 ```
 
-Then invoke in your agent terminal:
-
-```
-/kotlin-code-reviewer    # Principal-level Kotlin PR review
-/foam-notes              # Add or update a note in the Foam knowledge graph
-```
-
----
-
 ## Skills
 
-### kotlin-code-reviewer
+| Skill | Use it for |
+| --- | --- |
+| `doc-writer` | Writing and reviewing technical docs, design docs, decision records, runbooks, project updates, and Confluence content. |
+| `write-code` | Implementing features and making focused code changes with clean-code and commit discipline. |
+| `review-code` | General code and pull-request review, with findings prioritized by severity and design impact. |
+| `kotlin-code-reviewer` | Principal-level Kotlin review covering architecture, idioms, coroutines, libraries, and agentic code. |
+| `foam-notes` | Adding or updating notes in an open Foam knowledge-base workspace. |
+| `portfolio-analysis` | Analyzing a stock-portfolio CSV and producing evidence-based buy, hold, or sell assessments. |
 
-Principal-level Kotlin PR and code reviewer. Covers architecture, library-first design, Kotlin idioms, coroutine safety, and AI agent prompt quality.
+Use `doc-writer`, `write-code`, and `review-code` for routine work. Add
+`kotlin-code-reviewer` when the code under review is Kotlin. The remaining
+skills are task-specific.
 
-### foam-notes
-
-Maintains a Foam knowledge graph. Open the Foam repository as the workspace before using this skill so the agent reads and writes notes in the correct project.

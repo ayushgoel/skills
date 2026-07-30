@@ -17,7 +17,7 @@ When the user asks to analyze their portfolio and provides a CSV file, follow th
 Read the provided CSV file to extract the list of stocks, the number of shares held, and the acquisition price for each stock.
 
 ### 2. Clean and Deduplicate Data
-Filter out any stocks where the volume (number of shares) is 0. If there are duplicate entries for the same stock, merge them by summing the number of shares and recalculating the average acquisition price (using a weighted average based on the number of shares). Write this cleaned-up data into a new CSV file before moving forward.
+Filter out any stocks where the volume (number of shares) is 0. If there are duplicate entries for the same stock, merge them by summing the number of shares and recalculating the average acquisition price (using a weighted average based on the number of shares). Write the cleaned data beside the input file as `<input-stem>.cleaned.csv` before moving forward.
 
 ### 3. Analyze Each Stock
 For every stock in the portfolio, use your search tools (or web search if available) to gather the following information:
@@ -36,7 +36,9 @@ Based on the analysis, provide a **Buy / Hold / Sell** decision for each stock.
 - *Sell*: If the company is showing declining profitability, poor growth, decreasing promoter holding, or is significantly overvalued without justification.
 
 ### 5. Output Format
-Present the analysis in a clear, structured format (e.g., Markdown). For each stock, include:
+Write the completed analysis beside the input file as `<input-stem>.analysis.md`. Keep any downloaded or intermediate data in the same input directory with an input-derived filename, such as `<input-stem>.screener-data.json`.
+
+Present the analysis in a clear, structured Markdown format. For each stock, include:
 - **Stock Name**
 - **Acquisition Details**: Quantity and Acquisition Price
 - **Analysis**:
