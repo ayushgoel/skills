@@ -1,53 +1,60 @@
 ---
 name: kotlin-code-reviewer
 description: >-
-  Principal-level Kotlin code reviewer. Audits architecture, library-first
-  implementation, design, implementation details, and AI agentic logic.
-  Use when reviewing a PR, branch diff, or any Kotlin source file — triggered by
-  requests like "review this PR", "audit this branch", "review my Kotlin code",
-  or "give me a code review".
+  Kotlin-specific extension for review-code. Use alongside the general reviewer
+  when a pull request, branch, diff, or source set contains Kotlin or Kotlin
+  script files. Adds coroutine, null-safety, Kotlin idiom, library-first,
+  architecture, and JVM compatibility checks.
 ---
 
 # Kotlin Code Reviewer
 
-Principal-level audit of every PR or diff. Read the reference files below as needed for the full criteria.
+Apply this skill as an extension to `review-code`, which owns the read-only
+default, evidence standard, severity order, and final response structure.
 
----
+## Select The Diff
 
-## Git synchronization (run first, always)
+For a Bitbucket pull request, use `prflow` to identify the repository, source and
+destination branches, diff, comments, checks, and pipeline state. Use
+`atlas prflow <command> --help` when current flags are uncertain.
 
-Before reviewing any diff:
+For a local branch review:
 
-```bash
-git fetch origin main
-git fetch origin <BRANCH_NAME>
-git diff origin/main...<BRANCH_NAME>
-```
+1. Inspect the current branch, working tree, and configured remotes.
+2. Resolve the remote default branch from `refs/remotes/<remote>/HEAD` or remote
+   metadata. Do not assume it is `main`.
+3. Compare the merge-base range with three-dot syntax:
+   `git diff <default-ref>...<review-head>`.
+4. Fetch only when current remote state is required and the user has asked for a
+   current branch or PR review. Do not alter the working tree.
 
-Use three-dot syntax (`...`) to isolate only branch-introduced changes.
+If the intended base cannot be established reliably, state the ambiguity instead
+of silently selecting a branch.
 
-After diffing, do a **blast-radius check** before writing feedback:
+## Kotlin Review Workflow
 
-```bash
-# Find callers of any modified public function or class
-rg "FunctionName|ClassName" --type kotlin
-# Check what modules import the modified file's package
-rg "import com.example.modified.package" --type kotlin
-```
+1. Identify touched modules, layers, public APIs, serialized models, build files,
+   and Java interoperability boundaries.
+2. Use `rg` to inspect callers and consumers of changed public symbols.
+3. Apply the material checks in
+   [`references/review-framework.md`](references/review-framework.md).
+4. Use [`references/kotlin-idioms.md`](references/kotlin-idioms.md) for
+   null-safety, collections, coroutines, sealed types, value classes,
+   immutability, extensions, and delegated properties.
+5. Format Kotlin-specific findings using
+   [`references/output-format.md`](references/output-format.md).
 
----
+Prioritize production behavior over idiomatic preference. In particular, check:
 
-## Review workflow
+- blocking calls, unstructured concurrency, cancellation, dispatcher choice,
+  shared mutable state, and lifecycle leaks
+- nullability contracts, unchecked assertions, exceptions, and result handling
+- API and binary compatibility, serialization changes, Java callers, and
+  event-schema compatibility
+- resource closure, transaction boundaries, retries, timeouts, and idempotency
+- existing stdlib or project-library alternatives before accepting new helpers
+- tests for coroutine timing, cancellation, failure, and changed contracts
 
-1. **Identify scope** — which modules, layers, and public APIs are touched.
-2. **Blast-radius check** — grep for usages of every modified symbol.
-3. **Run the five-level framework** — see [`references/review-framework.md`](references/review-framework.md).
-   - Architecture & System level
-   - Design & Idiomatic quality
-   - Implementation details
-   - AI Agent & Prompt engineering (only if `.md`/`.yaml` agent files are in the diff)
-   - Library-first / minimalist architecture
-4. **Write structured output** — see [`references/output-format.md`](references/output-format.md) for severity tiers and required fields.
-5. **Kotlin-specific checks** — see [`references/kotlin-idioms.md`](references/kotlin-idioms.md) for idiomatic patterns, stdlib replacements, and coroutine rules.
-
-Every issue must include a copy-pasteable fix and an explanation of the architectural trade-off.
+Follow the general review finding threshold. Every reported issue needs a
+concrete correction. Provide a copy-pasteable patch only when it is small and
+safe. Explain architecture trade-offs only for material design findings.

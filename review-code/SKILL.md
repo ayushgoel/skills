@@ -1,77 +1,90 @@
 ---
 name: review-code
 description: >-
-  Reviews code for design alignment, clean code quality, functional style, and
-  comment discipline, following the same principles used when writing code.
-  Use when reviewing pull requests, examining code changes, or when asked to
-  "review", "code review", "look at this PR", "give feedback on", or audit any
-  source file or diff.
+  Use for code, branch, diff, and pull-request reviews in any language. Performs
+  analysis-only review by default, prioritizes correctness and production risk,
+  adds Kotlin-specific analysis through kotlin-code-reviewer, and uses PRFlow or
+  TWG when remote PR state or company context is needed.
 ---
 
 # Review Code
 
-## Order of review
+Review for actionable defects and material engineering risk. Default to
+analysis-only.
 
-1. **Design alignment** — does the new code fit the shape of the codebase?
-2. **Clean code quality** — are functions, names, and structure sound?
-3. **Style** — is functional style used where it should be?
-4. **Comments** — are comments earning their place?
+## Mutation Boundary
 
----
+- Do not edit files, push commits, post comments, approve, merge, or update a PR
+  unless the user explicitly requests that action.
+- A request to "review", "audit", "inspect", or "give feedback" is read-only.
+- When fixes are requested, switch to `write-code` after completing enough
+  analysis to define the change.
 
-## 1. Design alignment (start here)
+## Gather The Right Evidence
 
-Before reading individual lines, check that the change fits the surrounding codebase:
+1. Read repository guidance and identify the exact diff or files in scope.
+2. Inspect nearby code, tests, callers, contracts, and configuration needed to
+   validate suspected findings.
+3. Use `prflow` for direct Bitbucket PR metadata, diff context, comments, checks,
+   pipelines, and failed logs.
+4. Use `twg` for linked Jira requirements, Confluence designs, historical
+   decisions, ownership, and cross-repository context.
+5. For Kotlin or Kotlin-script changes, apply `kotlin-code-reviewer` as a
+   language-specific extension to this review.
 
-- Naming conventions match existing vocabulary
-- Layering and module boundaries are respected
-- Data flow patterns are consistent with neighboring components
-- No new abstractions that duplicate existing ones
+Use live CLI help through the owning skill when command syntax is uncertain.
+Remote reads are allowed when needed for the review. Remote mutations still
+require an explicit user request.
 
-If the design doesn't fit, say so at the top — line-level feedback is secondary.
+## Review Priorities
 
-## 2. Clean code quality
+Review in this order:
 
-Flag any of these code smells:
-- **Rigidity**: a small change cascades into many other changes
-- **Fragility**: unrelated things break together
-- **Needless complexity**: abstractions or indirection with no payoff
-- **Opacity**: hard to understand without running it mentally
+1. Correctness and behavioral regressions
+2. Security, authorization, privacy, and data integrity
+3. Concurrency, resource lifecycle, failure handling, and reliability
+4. Public contracts, compatibility, architecture, and cross-module impact
+5. Missing or misleading tests for changed behavior
+6. Performance issues supported by a realistic execution path
+7. Maintainability and style only when they create material risk
 
-Functions must be:
-- Small and focused on one thing
-- Free of side effects
-- Free of flag arguments (split into separate functions instead)
-- Named descriptively — the name should make the body readable
+Check whether each issue is introduced by the reviewed change. Verify the
+execution path and surrounding code before reporting it.
 
-Names must be:
-- Descriptive, unambiguous, and consistent with the rest of the codebase
-- Not encoded or prefixed with type information
+## Finding Threshold
 
-## 3. Functional style
+Report an issue when all of these are true:
 
-- Flag classes used as bags of static methods — prefer module-level functions
-- Flag mutable shared state and hidden side effects
-- Flag inheritance used where composition or plain functions would be clearer
-- Flag over-engineered patterns: factory hierarchies, unnecessary generics, premature abstraction
+- The changed code introduces or exposes it.
+- It has a concrete impact.
+- The evidence is visible in the diff or supporting code.
+- A reasonable correction exists.
 
-Prefer: pure functions, explicit data flow, immutability, simple composition.
+Avoid speculative edge cases, generic best practices, unrelated legacy issues,
+and preferences already enforced by repository tooling. Match existing style
+unless that style causes a material defect.
 
-## 4. Comments
+Keep changes surgical when suggesting corrections. Do not turn a local defect
+into an unrelated redesign. Prefer existing utilities and dependencies over new
+abstractions.
 
-- **Flag**: comments that restate what the code already says
-- **Flag**: commented-out code (it belongs in version history, not the file)
-- **Flag**: closing-brace labels and noise comments
-- **Commend**: comments that explain non-obvious intent, tricky constraints, or warn of consequences
+## Feedback Format
 
----
+Lead with findings ordered by severity:
 
-## Feedback format
+- **Blocker**: unsafe to merge or deploy
+- **High**: likely correctness, security, data, or reliability failure
+- **Medium**: real defect with narrower impact or conditions
+- **Low**: material maintainability or test weakness
 
-Group feedback by severity:
+Each finding must include:
 
-- **Must fix**: correctness issues, broken design boundaries, hidden side effects
-- **Should fix**: code smells, naming, style violations
-- **Consider**: optional improvements, alternative approaches worth discussing
+- severity and a precise title
+- file and line reference
+- concrete impact and triggering conditions
+- evidence or reasoning that establishes the issue
+- the smallest credible correction
 
-Each item: state the problem, explain why it matters, suggest a concrete fix.
+Use code snippets only when they make the correction clearer. After findings,
+list open questions or assumptions, then give a short summary. When no findings
+meet the threshold, say so clearly and note any test gaps or residual risk.

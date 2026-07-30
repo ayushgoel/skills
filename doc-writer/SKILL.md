@@ -2,124 +2,133 @@
 name: doc-writer
 description: >-
   Use when writing, rewriting, or reviewing concise documentation, including
-  technical docs, high-level design docs, DACI decision docs, runbooks, project
-  updates, Confluence pages, and docs that need tighter structure, fewer
-  sections, a table of contents, cleaner links, useful image prompts, or less
-  AI-sounding prose.
+  technical and design docs, PRDs, DACI decisions, runbooks, project updates,
+  meeting notes, and Confluence pages. Also use when documentation needs tighter
+  structure, source-backed claims, preserved links, or less AI-sounding prose.
 ---
 
 # Doc Writer
 
-Write concise docs with a clear table of contents, only the sections the doc type needs, and no repeated content.
+Write concise, evidence-based docs with only the sections the reader needs.
 
-## Local Style
+## Destination And Evidence
 
-- Start with `Summary` for explainers and design docs. Include purpose and scope, key themes, and the most important insights.
-- Use numbered sections for long technical docs. Keep the top level easy to scan.
-- Use tables for components, decision factors, options, scope estimates, status, and ownership.
-- Put heavy detail in appendices instead of interrupting the main argument.
-- Name the recommendation early in DACI docs, then support it with data and trade-offs.
-- Prefer concrete system language over generic template language.
-
-## First Question
-
-If the target format is not explicit, ask: "Is this a Confluence page?"
-
-If yes, use Confluence-friendly formatting and macros judiciously. Prefer macros only when they improve scanning:
-- `table` for comparisons, decision matrices, ownership, timelines, or status grids
-- `expand` for details most readers can skip
-- `status` for state, risk, priority, or decision markers
-- `info`, `note`, or `warning` only when the callout changes reader behavior
+- Infer the destination from the request, page URL, referenced page, open file, or
+  active workspace. Ask only when the destination materially changes the result.
+- Treat a Confluence URL, page ID, existing page, or explicit publish/update
+  request as Confluence context.
+- Use the `twg` skill for company evidence from Confluence, Jira, Drive, Slack,
+  ownership records, decisions, and related work.
+- Read the smallest useful evidence set. Preserve source links during rewrites
+  and place citations next to the claims they support.
+- Distinguish facts from assumptions, recommendations, and unresolved questions.
 
 ## Workflow
 
-1. Identify the doc type before drafting.
-2. Put a linked table of contents directly after the title or one-sentence summary.
-3. Use the smallest useful section set for the doc type.
-4. Merge duplicate ideas instead of restating them in later sections.
-5. Add image prompts where a visual would shorten or clarify the doc.
-6. Make every paragraph earn its place. Prefer short paragraphs and concrete bullets.
-7. Put references last.
+1. Identify the audience, decision or task, document type, and destination.
+2. Read existing content and source material before changing its structure.
+3. Resolve material evidence gaps with local sources or `twg`.
+4. Draft the smallest useful section set for the document type.
+5. Remove repetition, unsupported claims, empty sections, and generic prose.
+6. Verify links, claims, ownership, decisions, and requested output format.
+7. Write or publish only under the mutation rules below.
 
-## Doc Topics
+For long documents, put a linked table of contents after the title or
+one-sentence summary. Skip it when the document is already easy to scan.
 
-Use these as topic budgets, not rigid headings. Merge related topics to keep the doc small.
+## Confluence Reads And Writes
 
-- High-level design: summary, objective, goals and non-goals, context, requirements, architecture overview, key components, trust boundaries, lifecycle or flow, design principles, alternatives, performance, observability, rollout, rollback strategy, security, privacy, risks, work log, open questions, references
-- Deep technical design: context and goals, architecture overview, key design principles, data or table design, core components, interfaces, feature gates, migration plan, implementation phases, constraints, risks, references
-- DACI decision doc: status, impact, one-way or two-way door, driver, approver, recommendation, contributors, informed, due date, resources, background, relevant data, decision factors, options, outcome, action items, appendices, references
-- How-to or runbook: summary, alert or trigger, severity, impact, diagnostics, mitigation, verification, troubleshooting, follow-up, references
-- On-call handover: date, participants, discussion topics, report, action items, decisions, references
-- Technical explainer: summary, concepts, architecture or flow, dependencies, edge cases, failure modes, references
-- Project update: summary, status, progress, risks, decisions needed, next steps, references
-- Proposal: summary, problem, proposal, impact, risks, open questions, references
-- Meeting notes: summary, decisions, actions, open questions, references
+For Confluence reads, use `twg` to resolve the page and fetch its current
+content, metadata, and relevant comments or children. A read, review, summary,
+or draft request is analysis-only and must not mutate the page.
 
-## DACI Guidance
+For Confluence writes:
 
-Use DACI for important decisions. Do not bury DACI inside a general design doc. Create a separate DACI when the decision needs explicit accountability.
+- When the user explicitly asks to create, update, publish, move, or comment,
+  read the current page state first and execute the requested mutation.
+- Without an explicit write request, produce a draft and identify the intended
+  destination without changing Confluence.
+- Preserve existing links, page hierarchy, ownership, and useful formatting.
+- Avoid overwriting concurrent edits. Re-read current state when the write follows
+  a long analysis or the page may have changed.
+- Use `twg help` or `twg help describe` when the current command grammar or write
+  contract is uncertain.
 
-Prefer a compact decision header with status, impact, driver, approver, recommendation, contributors, informed, due date, and resources. Use a table for the header in Confluence.
+Use Confluence tables for comparisons, ownership, timelines, decisions, or
+status. Use expand, status, info, note, and warning macros only when they improve
+scanning or change reader behavior.
 
-Use a decision factor matrix with weighting and rationale. Compare options against those factors. End the main body with a clear recommendation and action items. Put sizing, raw scope, or detailed estimates in appendices.
+## PRD Mode
 
-## Technical Detail Style
+Use PRD mode for product or feature requirements. Gather known context from the
+conversation and linked company evidence before asking questions. Ask only for
+missing information that blocks a useful draft, and mark unresolved details as
+`TBD` rather than inventing them.
 
-For architecture and lifecycle docs:
+Select from these topics rather than treating them as a fixed template:
+
+- problem, users, proposed outcome, goals, and non-goals
+- user journeys, stories, and testable acceptance criteria
+- functional and non-functional requirements
+- measurable success metrics and guardrail metrics
+- dependencies, constraints, rollout, risks, and open questions
+- for AI features: model and tool boundaries, grounding data, evaluation,
+  safety, privacy, latency, and cost
+
+Requirements must be observable or testable. Replace words such as "fast",
+"easy", or "intuitive" with a measurable threshold or an explicit `TBD`.
+
+## Document Topic Budgets
+
+Use these as topic budgets, not rigid headings. Merge related topics.
+
+- High-level design: summary, objective, goals and non-goals, context,
+  requirements, architecture, components, trust boundaries, lifecycle,
+  alternatives, observability, rollout, rollback, security, risks, open
+  questions, references
+- Deep technical design: context, architecture, invariants, data design,
+  components, interfaces, feature gates, migration, implementation phases,
+  constraints, risks, references
+- DACI decision: status, impact, driver, approver, recommendation, contributors,
+  informed, due date, evidence, decision factors, options, outcome, actions
+- Runbook: trigger, severity, impact, diagnostics, mitigation, verification,
+  troubleshooting, follow-up
+- Project update: summary, status, progress, risks, decisions needed, next steps
+- Meeting notes: summary, decisions, actions, open questions
+
+## Technical And Decision Docs
+
+- State the key recommendation, invariant, or system behavior early.
 - Explain the path from user action to system response.
-- Show components in a table with each component's role.
-- Call out deployment, trust, auth, tenant routing, policy, and data boundaries when relevant.
-- Include Mermaid diagrams for architecture, flow, and connection management when text alone is dense.
-- Keep low-level API payloads, exhaustive config, and raw query details out of the main HLD unless they decide the design.
-
-For implementation-heavy docs:
-- State the invariant first, such as "API behavior is unchanged."
-- Name the single routing, gating, or decision point.
-- Show phase plans and migration windows.
-- Call out kill switches, feature gates, and rollback paths.
+- Show component roles, boundaries, ownership, or options in tables when useful.
+- Call out deployment, authentication, tenant, policy, data, security, and
+  privacy boundaries when relevant.
+- Use Mermaid for architecture, sequence, lifecycle, and rollback flows when it
+  communicates more clearly than prose.
+- Keep raw payloads, exhaustive configuration, and detailed estimates out of the
+  main argument unless they determine the decision.
+- For consequential decisions, compare options against explicit factors and
+  record ownership and next actions.
 
 ## Image Prompts
 
-Bias toward adding image prompts when a diagram would reduce text. Do not generate the image unless explicitly asked.
+Add an image prompt only when a visual would materially shorten or clarify the
+document. Do not generate the image unless explicitly asked.
 
-Use this pattern:
 ```markdown
-Image prompt: Create a clean architecture diagram showing [components], [data flow], [external dependencies], and [failure or rollback path]. Use labels that match the section text.
+Image prompt: Create a clean architecture diagram showing [components], [data
+flow], [external dependencies], and [failure or rollback path]. Use labels that
+match the document.
 ```
 
-If the document already contains a Mermaid diagram, add an image prompt only when a polished visual would help reviewers or executives.
+## Style And Links
 
-Good candidates:
-- Architecture, component, data flow, and sequence diagrams
-- Decision trees for DACI options
-- Rollout, rollback, and incident flow diagrams
-- Before and after diagrams for migrations or refactors
-
-## Style Rules
-
-- Do not use em dashes, two adjacent hyphens, or semicolons in prose. Rewrite with commas, periods, or separate sentences so it sounds human.
-- Avoid stock AI phrasing such as "delve", "comprehensive", "robust", "seamless", "game-changing", "leverage", and "unlock".
-- Do not add a section just because a template usually has one.
-- Do not repeat the same idea in summary, context, and conclusion.
-- Do not end with a generic conclusion unless it adds a concrete decision or next step.
-- Use direct wording: "Do X because Y" instead of throat clearing.
-
-## Links
-
-Do not paste bare URLs into the body. Link relevant words inside sentences.
-
-Good:
-```markdown
-Follow the [deployment runbook](https://example.com/runbook) before promoting to production.
-```
-
-Bad:
-```markdown
-Deployment runbook: <bare URL>
-```
-
-## References
-
-End with `## References` when any source document was used.
-
-Only include document links in this section. Do not explain or summarize them there.
+- Prefer short paragraphs, concrete bullets, and system-specific language.
+- Do not add sections just because a template contains them.
+- Do not repeat the same idea across the summary, context, and conclusion.
+- Avoid em dashes, adjacent hyphens, semicolons, and stock AI phrasing.
+- Link descriptive words instead of pasting bare URLs.
+- Put a source link next to a sourced claim. Add a final `References` section
+  only when a consolidated source list helps the reader.
+- Do not end with a generic conclusion. End with the decision, owner, or next
+  action when one exists.
