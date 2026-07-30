@@ -32,9 +32,23 @@ npx skills add ayushgoel/skills
 | `write-code` | Implementing features and making focused code changes with clean-code and commit discipline. |
 | `review-code` | Analysis-first code and pull-request review, with findings prioritized by severity and production impact. |
 | `kotlin-code-reviewer` | Kotlin-specific review extension covering architecture, idioms, coroutines, libraries, and JVM contracts. |
+| `twg` | Company work-data discovery and actions across Jira, Confluence, search, ownership, status, and engineering context. |
+| `prflow` | Direct Bitbucket pull-request, review, comment, check, pipeline, log, and Renovate operations. |
 | `foam-notes` | Adding or updating notes in an open Foam knowledge-base workspace. |
 | `portfolio-analysis` | Analyzing a stock-portfolio CSV and producing evidence-based buy, hold, or sell assessments. |
 
 Use `doc-writer`, `write-code`, and `review-code` for routine work. Add
-`kotlin-code-reviewer` when the code under review is Kotlin. The remaining
+`kotlin-code-reviewer` when the code under review is Kotlin. Use `twg` for
+company context and `prflow` for direct Bitbucket PR or CI work. The remaining
 skills are task-specific.
+
+## Public Repository Safety
+
+Only reusable skill source and generic examples belong in this repository.
+Never commit credentials, environment files, retrieved company content, tenant
+or account identifiers, private URLs, personal portfolio inputs, generated
+reports, command logs, or downloaded evidence.
+
+Before committing, inspect `git status --short` and `git diff --cached`. Keep
+runtime files in a private workspace or temporary directory outside this
+repository.

@@ -1,6 +1,23 @@
 .DS_Store
 
 # Root-level runtime outputs from portfolio analysis.
+/*.csv
 /*.analysis.md
 /*.cleaned.csv
 /*.screener-data.json
+
+# Runtime and local configuration.
+/.agent-runs/
+/tmp/
+*.log
+.env
+.env.*
+!.env.example
+
+# Credentials and signing material.
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
