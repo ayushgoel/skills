@@ -1,54 +1,134 @@
 ---
 name: portfolio-analysis
-description: Analyzes a portfolio of stocks from a CSV file. Use this skill when the user provides a CSV with stock names, quantities, and acquisition prices and asks for a portfolio analysis, review, or buy/hold/sell decisions based on recent quarterly filings, valuation, growth, profitability, promoter holding, and dividends.
+description: Analyze listed stocks or an equity portfolio, including CSV holdings, and discover index-aware mid-cap opportunities using current primary-source evidence, normalized per-share fundamentals, valuation, promoter transactions, scenario-based return decomposition, and portfolio risk. Use to review stocks, compare holdings, find mid-cap ideas beyond an existing index core, or produce Add, Hold, Trim, Exit, or Watch decisions rather than react to recent ticker returns.
 ---
 
 # Portfolio Analysis
 
-## Overview
-
-This skill analyzes a user's stock portfolio provided via a CSV file. It evaluates each stock based on recent quarterly filings, news, valuation, growth, profitability, promoter holding, and dividends, and provides a buy/hold/sell decision assuming the user is a high net worth individual (valuation > 5 Crore).
+Analyze prospective returns through business performance, valuation, cash returns,
+and portfolio fit. Do not infer quality from recent price movement or make a decision
+from a single ratio.
 
 ## Workflow
 
-When the user asks to analyze their portfolio and provides a CSV file, follow these steps:
+1. Establish the as-of date, market, horizon, currency, return hurdle, risk needs,
+   liquidity needs, tax constraints, desired actions, and portfolio boundary. Include
+   index funds and externally held equity when the user discloses them. If context is
+   missing, state reasonable illustrative assumptions instead of inventing facts.
+   Do not recommend direct mega-cap exposure as diversification when the user's index
+   funds already provide it.
+2. For a portfolio CSV, extract the security identifier, quantity, and acquisition
+   price. Remove zero-quantity rows and combine duplicates using quantity-weighted
+   acquisition cost. Write `<input-stem>.cleaned.csv` beside the input unless that
+   directory is this public skill repository; in that case, use a private temporary
+   workspace or a user-approved output directory.
+3. Read [references/two-engine-framework.md](references/two-engine-framework.md)
+   completely before researching or rating a company. For mid-cap discovery or when
+   the user already has an index core, also read
+   [references/mid-cap-opportunity-framework.md](references/mid-cap-opportunity-framework.md)
+   completely.
+4. Gather current, dated evidence. Prefer exchange filings, regulatory filings,
+   company results and presentations, conference-call transcripts, and official
+   transaction disclosures. Use secondary sources for context, not as substitutes
+   for material primary facts. Cite sources and distinguish facts, estimates, and
+   inferences.
+5. Normalize the economic record. Reconcile reported and diluted per-share figures;
+   remove material one-offs; inspect share-count changes, cyclicality, leverage,
+   capitalized costs, acquisitions, and cash conversion. Never annualize one quarter
+   without explaining seasonality.
+6. Select the appropriate valuation lens. Use P/E only when positive normalized EPS
+   represents the business. Use the sector-specific alternatives in the reference
+   when P/E is misleading.
+7. Assess the EPS engine, valuation engine, promoter signal, dividends and buybacks,
+   balance-sheet risk, and thesis invalidators. Do not count buybacks twice: their
+   share-count effect belongs in EPS; cash dividends belong in total return.
+8. Build bear, base, and bull scenarios over the stated horizon. When P/E is valid,
+   run `scripts/project_returns.py` using a temporary JSON input outside this source
+   repository. Report EPS growth, multiple change, dividend contribution, price
+   CAGR, and annualized total shareholder return separately. Compare each case with
+   the return hurdle and calculate the maximum entry price supported by that case.
+9. Assign `Add/Initiate`, `Hold`, `Trim`, `Exit/Avoid`, or `Watch`. Base the action on
+   prospective return, downside, thesis quality, confidence, concentration, taxes,
+   and opportunity cost—not acquisition price or past return alone.
+10. For a portfolio, aggregate position weights, sector and factor concentration,
+    balance-sheet and governance risks, liquidity, correlated thesis failures, and
+    the effect of proposed trades. Do not impose a fixed HNI or 80/20 allocation.
+11. When opportunity discovery is in scope, build a current mid-cap candidate funnel
+    beyond existing holdings. Use the current regulator/AMFI or exchange classification
+    rather than a stale fixed market-cap threshold. Compare candidates with relevant
+    mid-cap peers and retain only ideas that pass the reference's quality, governance,
+    liquidity, valuation, and evidence gates. A watchlist is preferable to a forced buy.
 
-### 1. Parse the CSV File
-Read the provided CSV file to extract the list of stocks, the number of shares held, and the acquisition price for each stock.
+## Portfolio Mandate and Opportunity Discovery
 
-### 2. Clean and Deduplicate Data
-Filter out any stocks where the volume (number of shares) is 0. If there are duplicate entries for the same stock, merge them by summing the number of shares and recalculating the average acquisition price (using a weighted average based on the number of shares). Write the cleaned data beside the input file as `<input-stem>.cleaned.csv` before moving forward.
+- Treat disclosed index funds as the core exposure. Analyze held large caps and flag
+  exceptional opportunities, but do not let familiar index constituents crowd out
+  mid-cap research or duplicate the core without a clear prospective-return advantage.
+- Separate `core/index exposure`, `active compounders`, `cyclical opportunities`, and
+  `speculative/research positions`. Evaluate concentration across the combined exposure.
+- For new-money recommendations, prioritize the best risk-adjusted expected returns,
+  with deliberate coverage of mid caps. Do not prefer a mid cap merely because of its
+  size; require a longer runway, credible per-share earnings compounding, acceptable
+  downside, and sufficient liquidity.
+- Demand a higher margin of safety or return buffer for mid caps because estimates,
+  liquidity, key-person dependence, customer concentration, and governance risk are
+  usually wider than for large caps.
+- Identify why an opportunity may be mispriced and what evidence can close that gap.
+  Reject ideas whose base return requires speculative P/E expansion, peak margins, an
+  unfinanced capacity plan, or unsupported market-share assumptions.
+- Prefer a small, ranked shortlist of deeply researched candidates over a long screen.
+  Give explicit buy zones, staged position-size ranges, monitoring events, and thesis
+  invalidators; do not fill an allocation quota when no candidate clears the hurdle.
 
-### 3. Analyze Each Stock
-For every stock in the portfolio, use your search tools (or web search if available) to gather the following information:
-- **Recent Quarterly Filings & News**: What are the latest financial results and significant news events?
-- **Valuation vs Market Average**: Is the stock overvalued or undervalued compared to its peers/market average?
-- **Growth**: Is the company showing revenue and earnings growth?
-- **Profitability**: Is the company profitable? What are its margins?
-- **Promoter Holding**: Explicitly mention if the stock has seen an increase or decrease in promoter holding recently.
-- **Dividends**: Explicitly mention if the company has given dividends recently.
+## Decision Discipline
 
-### 4. Provide a Decision
-Based on the analysis, provide a **Buy / Hold / Sell** decision for each stock. 
-*Crucial Context*: Assume the user is a high net worth individual (HNI) with a portfolio valuation greater than 5 Crore. This means the investment strategy should lean towards wealth preservation, stable growth, and risk management for 80% of the portfolio. Rest 20% should be invested in wealth generation mode. 
-- *Buy*: If the stock shows strong growth, profitability, reasonable valuation, increasing promoter holding, and consistent dividends.
-- *Hold*: If the stock is stable but lacks strong growth catalysts, or is fairly valued.
-- *Sell*: If the company is showing declining profitability, poor growth, decreasing promoter holding, or is significantly overvalued without justification.
+- Use the user's hurdle rate. If absent, disclose an illustrative hurdle and show how
+  the action changes at nearby hurdles.
+- Treat an attractive base case as insufficient when the bear case risks permanent
+  capital loss or depends on fragile financing or governance.
+- Treat high-quality growth at a hostile valuation as a valuation problem, not
+  automatically a business-quality problem.
+- Treat a low multiple with weak normalized earnings as a possible value trap.
+- Treat promoter buying as corroborating evidence, never as a substitute for
+  operating evidence or valuation.
+- Do not equate higher return potential with a smaller market cap. Require prospective
+  per-share return to come primarily from earnings/book-value growth and cash returns,
+  with a neutral or conservative valuation engine in the base case.
+- State confidence as high, medium, or low and list the evidence that would change
+  the action.
 
-### 5. Output Format
-Write the completed analysis beside the input file as `<input-stem>.analysis.md`. Keep any downloaded or intermediate data in the same input directory with an input-derived filename, such as `<input-stem>.screener-data.json`.
+## Output
 
-Present the analysis in a clear, structured Markdown format. For each stock, include:
-- **Stock Name**
-- **Acquisition Details**: Quantity and Acquisition Price
-- **Analysis**:
-  - Quarterly Filings & News
-  - Valuation vs Market Average
-  - Growth & Profitability
-  - Promoter Holding
-  - Dividends
-- **Decision**: Buy / Hold / Sell (with a brief justification based on the HNI persona)
+Write portfolio analysis beside the input as `<input-stem>.analysis.md`, except when
+the input is inside this public skill repository. Keep runtime reports, downloads,
+and intermediate data in the input directory, a private workspace, or a temporary
+directory—never in this skill repository.
 
-## Guidelines
-- Be explicit about promoter holding and dividends, as these are key indicators of company health and management confidence.
-- Ensure the analysis reflects the HNI persona (valuation > 5 Crore), focusing on long-term stability.
+Include:
+
+1. As-of date, horizon, assumptions, data gaps, and source policy.
+2. Portfolio summary with concentration risks and prioritized actions.
+   Show disclosed index exposure separately and explain where direct holdings overlap.
+3. For each company:
+   - position and acquisition details, with cost basis separated from forward value;
+   - normalized operating record and accounting-quality notes;
+   - EPS-engine rating and supporting evidence;
+   - valuation-engine rating and appropriate valuation method;
+   - bear/base/bull return table;
+   - promoter transaction and pledge assessment;
+   - dividends, buybacks, dilution, and capital allocation;
+   - thesis, catalysts, risks, and explicit invalidators;
+   - action, confidence, position-size implication, and concise rationale;
+   - dated source links.
+4. When opportunity discovery is requested, a ranked mid-cap shortlist containing:
+   - current market-cap classification and liquidity evidence;
+   - the differentiated thesis and source of potential mispricing;
+   - EPS-engine, valuation-engine, governance, balance-sheet, and cash-conversion gates;
+   - bear/base/bull returns, buy zone, initial and maximum position-size range;
+   - catalyst path, invalidators, confidence, and dated primary sources;
+   - screened candidates rejected and the decisive reason, to expose selection bias.
+5. A final action queue: add, hold, trim, exit, and watch/research. Distinguish changes
+   to existing holdings from new mid-cap ideas.
+
+Use ranges rather than false precision. Never present scenario outputs or article
+case studies as guarantees.

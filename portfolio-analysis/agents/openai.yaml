@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Analysis"
+  short_description: "Index-aware portfolio and mid-cap analysis"
+  default_prompt: "Use $portfolio-analysis to evaluate this portfolio and rank mid-cap opportunities beyond my index core with two-engine return scenarios."

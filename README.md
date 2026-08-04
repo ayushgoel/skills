@@ -35,7 +35,7 @@ npx skills add ayushgoel/skills
 | `twg` | Company work-data discovery and actions across Jira, Confluence, search, ownership, status, and engineering context. |
 | `prflow` | Direct Bitbucket pull-request, review, comment, check, pipeline, log, and Renovate operations. |
 | `foam-notes` | Adding or updating notes in an open Foam knowledge-base workspace. |
-| `portfolio-analysis` | Analyzing a stock-portfolio CSV and producing evidence-based buy, hold, or sell assessments. |
+| `portfolio-analysis` | Analyzing stocks or portfolio CSVs with two-engine return scenarios, promoter signals, and portfolio-aware actions. |
 
 Use `doc-writer`, `write-code`, and `review-code` for routine work. Add
 `kotlin-code-reviewer` when the code under review is Kotlin. Use `twg` for

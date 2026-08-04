@@ -58,6 +58,24 @@ Use Confluence tables for comparisons, ownership, timelines, decisions, or
 status. Use expand, status, info, note, and warning macros only when they improve
 scanning or change reader behavior.
 
+## Document Suites And Review Comments
+
+- Give each page one job. Pillar pages lead with the target state, summarize the
+  current state briefly, name the gaps, and link to the work log for execution.
+  Do not turn a direction-setting page into an exhaustive inventory.
+- Keep action items, owners, targets, and status in one work log. Link to it from
+  narrative pages instead of duplicating action tables across the suite.
+- If the user marks that work log or another page as manually owned, treat it as
+  read-only. Collect exact follow-up items in the handoff for the owner to add.
+- Treat an answered review comment as a decision. Update every affected page,
+  remove the item from open questions, and add any implementation work to the
+  work log.
+- Move content to the page where readers need it under pressure. For example,
+  operational kill switches belong with incident response, while the service
+  overview should link to them.
+- Resolve comments only after re-reading the published pages and checking that
+  cross-links, terminology, decisions, and work-log actions agree.
+
 ## PRD Mode
 
 Use PRD mode for product or feature requirements. Gather known context from the
