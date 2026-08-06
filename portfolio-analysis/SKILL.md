@@ -1,6 +1,6 @@
 ---
 name: portfolio-analysis
-description: Analyze listed stocks or an equity portfolio, including CSV holdings, and discover index-aware mid-cap opportunities using current primary-source evidence, normalized per-share fundamentals, valuation, promoter transactions, scenario-based return decomposition, and portfolio risk. Use to review stocks, compare holdings, find mid-cap ideas beyond an existing index core, or produce Add, Hold, Trim, Exit, or Watch decisions rather than react to recent ticker returns.
+description: Analyze listed stocks or an equity portfolio, including CSV holdings, and discover or monitor index-aware mid-cap and catalyst-growth opportunities using current primary-source evidence, normalized per-share fundamentals, valuation, promoter transactions, scenario-based return decomposition, and portfolio risk. Use to review stocks, compare holdings, find opportunities beyond an existing index core, maintain entry/scale/trim/exit watchlists, or produce evidence-based portfolio decisions rather than react to recent ticker returns.
 ---
 
 # Portfolio Analysis
@@ -26,6 +26,9 @@ from a single ratio.
    completely before researching or rating a company. For mid-cap discovery or when
    the user already has an index core, also read
    [references/mid-cap-opportunity-framework.md](references/mid-cap-opportunity-framework.md)
+   completely. For volatile growth, turnaround, order-book, capacity-expansion, or
+   catalyst-led companies, also read
+   [references/catalyst-watchlist-framework.md](references/catalyst-watchlist-framework.md)
    completely.
 4. Gather current, dated evidence. Prefer exchange filings, regulatory filings,
    company results and presentations, conference-call transcripts, and official
@@ -47,9 +50,12 @@ from a single ratio.
    repository. Report EPS growth, multiple change, dividend contribution, price
    CAGR, and annualized total shareholder return separately. Compare each case with
    the return hurdle and calculate the maximum entry price supported by that case.
-9. Assign `Add/Initiate`, `Hold`, `Trim`, `Exit/Avoid`, or `Watch`. Base the action on
-   prospective return, downside, thesis quality, confidence, concentration, taxes,
-   and opportunity cost—not acquisition price or past return alone.
+9. Assign `Discover`, `Validate`, `Starter`, `Scale/Add`, `Hold`, `Trim`, or
+   `Exit/Archive`. Base the state on prospective return, downside, thesis quality,
+   evidence maturity, confidence, concentration, taxes, and opportunity cost—not
+   acquisition price or past return alone. Map `Discover` and `Validate` to `Watch`
+   in compact action summaries. Do not use `Exit` solely because valuation is rich
+   while the operating thesis remains intact; normally use `Hold/Watch` or `Trim`.
 10. For a portfolio, aggregate position weights, sector and factor concentration,
     balance-sheet and governance risks, liquidity, correlated thesis failures, and
     the effect of proposed trades. Do not impose a fixed HNI or 80/20 allocation.
@@ -65,7 +71,8 @@ from a single ratio.
   exceptional opportunities, but do not let familiar index constituents crowd out
   mid-cap research or duplicate the core without a clear prospective-return advantage.
 - Separate `core/index exposure`, `active compounders`, `cyclical opportunities`, and
-  `speculative/research positions`. Evaluate concentration across the combined exposure.
+  `catalyst-growth/emerging compounders`, and `speculative/research positions`.
+  Evaluate concentration across the combined exposure.
 - For new-money recommendations, prioritize the best risk-adjusted expected returns,
   with deliberate coverage of mid caps. Do not prefer a mid cap merely because of its
   size; require a longer runway, credible per-share earnings compounding, acceptable
@@ -88,6 +95,12 @@ from a single ratio.
   capital loss or depends on fragile financing or governance.
 - Treat high-quality growth at a hostile valuation as a valuation problem, not
   automatically a business-quality problem.
+- Distinguish volatility from permanent-capital-loss risk. A volatile company with a
+  measurable, funded growth path may merit a capped starter position and catalyst
+  watch even before it qualifies as a proven compounder.
+- Reserve `Exit` for a broken thesis, unacceptable governance or financing risk, or a
+  clearly superior use of capital after tax and position-size effects. Use `Trim` when
+  price has outrun plausible earnings but the thesis remains valid.
 - Treat a low multiple with weak normalized earnings as a possible value trap.
 - Treat promoter buying as corroborating evidence, never as a substitute for
   operating evidence or valuation.
@@ -129,6 +142,11 @@ Include:
    - screened candidates rejected and the decisive reason, to expose selection bias.
 5. A final action queue: add, hold, trim, exit, and watch/research. Distinguish changes
    to existing holdings from new mid-cap ideas.
+6. For catalyst-growth names, a watchlist dashboard containing the current state,
+   thesis, dated baseline, next catalyst, operating KPIs, valuation/add zone, scale
+   conditions, trim conditions, hard invalidators, position cap, review date, and
+   source links. State which alerts require one quarter and which require confirmation
+   across two quarters.
 
 Use ranges rather than false precision. Never present scenario outputs or article
 case studies as guarantees.
