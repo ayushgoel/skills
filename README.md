@@ -28,9 +28,9 @@ npx skills add ayushgoel/skills
 
 | Skill | Use it for |
 | --- | --- |
-| `doc-writer` | Writing and reviewing technical docs, PRDs, design docs, decision records, runbooks, project updates, and Confluence content. |
-| `write-code` | Implementing features and making focused code changes with clean-code and commit discipline. |
-| `review-code` | Analysis-first code and pull-request review, with findings prioritized by severity and production impact. |
+| `doc-writer` | Writing and reviewing technical docs, PRDs, design docs, decision records, runbooks, project updates, Confluence content, and Word or PDF deliverables. |
+| `write-code` | Implementing focused code changes with proportional planning, systematic debugging, simple design, and risk-based verification. |
+| `review-code` | Analysis-first code, pull-request, technical-plan, and design review, with findings prioritized by severity and production impact. |
 | `kotlin-code-reviewer` | Kotlin-specific review extension covering architecture, idioms, coroutines, libraries, and JVM contracts. |
 | `twg` | Company work-data discovery and actions across Jira, Confluence, search, ownership, status, and engineering context. |
 | `prflow` | Direct Bitbucket pull-request, review, comment, check, pipeline, log, and Renovate operations. |

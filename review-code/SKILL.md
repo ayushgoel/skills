@@ -1,10 +1,11 @@
 ---
 name: review-code
 description: >-
-  Use for code, branch, diff, and pull-request reviews in any language. Performs
-  analysis-only review by default, prioritizes correctness and production risk,
-  adds Kotlin-specific analysis through kotlin-code-reviewer, and uses PRFlow or
-  TWG when remote PR state or company context is needed.
+  Use for code, branch, diff, and pull-request reviews in any language, and for
+  technical-plan or design reviews. Performs analysis-only review by default,
+  prioritizes correctness and production risk, adds Kotlin-specific analysis
+  through kotlin-code-reviewer, and uses PRFlow or TWG when remote PR state or
+  company context is needed.
 ---
 
 # Review Code
@@ -19,6 +20,19 @@ analysis-only.
 - A request to "review", "audit", "inspect", or "give feedback" is read-only.
 - When fixes are requested, switch to `write-code` after completing enough
   analysis to define the change.
+
+## Choose The Review Mode
+
+- For code, branches, diffs, or pull requests, use the code-review workflow
+  below.
+- For implementation plans, architecture proposals, or technical designs, read
+  [references/plan-review.md](references/plan-review.md). Review whether the
+  proposal is ready to execute, not whether it matches a preferred template.
+- When a request includes both, review the design assumptions first, then check
+  whether the implementation preserves them.
+
+For a plan or design, follow the linked reference. The mutation boundary still
+applies; the remaining sections below define the code-review workflow.
 
 ## Gather The Right Evidence
 

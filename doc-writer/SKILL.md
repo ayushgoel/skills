@@ -3,8 +3,9 @@ name: doc-writer
 description: >-
   Use when writing, rewriting, or reviewing concise documentation, including
   technical and design docs, PRDs, DACI decisions, runbooks, project updates,
-  meeting notes, and Confluence pages. Also use when documentation needs tighter
-  structure, source-backed claims, preserved links, or less AI-sounding prose.
+  meeting notes, Confluence pages, and Word or PDF deliverables. Also use when
+  documentation needs tighter structure, source-backed claims, preserved links,
+  or less AI-sounding prose.
 ---
 
 # Doc Writer
@@ -35,6 +36,20 @@ Write concise, evidence-based docs with only the sections the reader needs.
 
 For long documents, put a linked table of contents after the title or
 one-sentence summary. Skip it when the document is already easy to scan.
+
+## File Deliverables
+
+Write ordinary Markdown and plain-text documents directly. When the requested
+deliverable is a Word document, read
+[references/docx-output.md](references/docx-output.md). When it is a PDF, or a
+document must be exported to PDF, read
+[references/pdf-output.md](references/pdf-output.md).
+
+Treat authoring and final-format validation as separate concerns. Preserve an
+existing document's useful styles, links, comments, and revision intent. For a
+new document, use restrained formatting appropriate to its destination. Render
+the final artifact and inspect representative pages when layout is part of the
+request; a successful conversion alone does not establish visual correctness.
 
 ## Confluence Reads And Writes
 

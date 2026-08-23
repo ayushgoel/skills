@@ -24,10 +24,24 @@ existing codebase.
 - Preserve unrelated user changes. Every changed line should trace to the
   requested behavior or to cleanup caused by that change.
 
+## Planning Threshold
+
+Start with the change when the path is clear and the work is narrow. Write a
+short plan before editing when the change has dependent steps, unclear
+requirements, a wide blast radius, an unfamiliar architecture, or material
+security, migration, or rollback risk. The plan should expose decisions and
+dependencies, not restate routine work.
+
+Challenge an assumption when repository evidence contradicts it or a simpler
+solution meets the same outcome. Do not turn ordinary implementation into a
+ceremonial planning exercise.
+
 ## Implementation Loop
 
 1. Define observable success criteria.
 2. For a bug, reproduce the failure or identify a deterministic failing path.
+   Read [references/debugging.md](references/debugging.md) when the cause is not
+   already localized.
 3. Find the narrowest ownership boundary for the change.
 4. Implement the smallest complete solution.
 5. Run the most focused relevant test, lint, type, or build check.
@@ -53,6 +67,10 @@ claim verification that was not performed.
 ## Design
 
 - Prefer the simplest design that satisfies current requirements.
+- Choose in this order: extend the existing code, use the standard library or
+  platform, use an already-approved dependency, then write the smallest new
+  implementation. Add a dependency only when its benefit justifies its
+  operational and maintenance cost.
 - Add an abstraction only when it removes real duplication or represents an
   existing domain boundary.
 - Keep functions and modules focused. Avoid flag arguments when separate
