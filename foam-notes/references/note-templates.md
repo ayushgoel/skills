@@ -12,7 +12,7 @@ Examples in repo: `RAG.md`, `Kafka.md`, `Cache.md`
 ```markdown
 # {Title}
 
-**Related:** [[Link A]] | [[Link B]] | [[Link C]]
+**Parent:** [[Parent Note]]
 
 ## What is {Title}?
 
@@ -64,7 +64,7 @@ Examples in repo: `Redis.md`, `Apache Cassandra.md`, `Amazon DynamoDB.md`, `Kube
 ```markdown
 # {Tool Name}
 
-**Related:** [[Link A]] | [[Link B]] | [[Link C]]
+**Parent:** [[Parent Note]]
 
 ## What is {Tool Name}?
 
@@ -120,7 +120,7 @@ Examples in repo: `AI Agent Design Patterns.md`, `CQRS.md`, `12 factor app.md`
 ```markdown
 # {Pattern Name}
 
-**Related:** [[Link A]] | [[Link B]] | [[Link C]]
+**Parent:** [[Parent Note]]
 
 ## Problem
 
@@ -176,10 +176,10 @@ Or, for a new bullet inside an existing section:
 * **{New Term}** — {definition from source}
 ```
 
-Or, for an updated **Related** line (append only):
+Or, when a note is genuinely reclassified, update its single parent:
 
 ```markdown
-**Related:** [[Existing A]] | [[Existing B]] | [[New Link]]
+**Parent:** [[New Parent]]
 ```
 
 ---
@@ -188,9 +188,10 @@ Or, for an updated **Related** line (append only):
 
 After writing, verify:
 
-- [ ] `**Related:**` line has at least one resolved `[[wikilink]]`
+- [ ] Non-root note has exactly one resolved `**Parent:** [[wikilink]]`
 - [ ] Every `[[link]]` in the note resolves to a real `.md` file (check with Glob)
-- [ ] At least one existing note has been updated to link back to this note
-- [ ] If the topic is in a hub area (`_HOME.md` section), a wikilink was added there
+- [ ] Parent reflects the narrowest structural category; no reciprocal parent link was added
+- [ ] Inline links are retained or added only where the prose needs a concrete cross-reference
+- [ ] `_HOME.md` is updated only when adding a top-level domain
 - [ ] No YAML frontmatter was added
 - [ ] No duplicate content from an existing note

@@ -1,6 +1,6 @@
 # Foam Repo Conventions
 
-Style guide for the open Foam workspace (scope is the workspace root; see parent `SKILL.md`, **Overview**). All notes must follow these rules for a consistent, readable graph.
+Style guide for the open Foam workspace (scope is the workspace root; see parent `SKILL.md`, **Overview**). Notes use a sparse parent tree for structure and selective inline links for reader navigation.
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ Every note follows this skeleton (see `note-templates.md` for full copy-paste ve
 ```
 # Title
 
-**Related:** [[Link A]] | [[Link B]] | [[Link C]]
+**Parent:** [[Parent Note]]
 
 ## Section Heading
 
@@ -45,7 +45,8 @@ Content…
 
 Rules:
 - H1 title = filename without `.md`
-- `**Related:**` line is always the **second non-blank line** (right after the title)
+- Every non-root note has exactly one `**Parent:**` line, always the **second non-blank line** (right after the title)
+- Top-level domain notes use `**Parent:** [[_HOME]]`; `_HOME.md` has no parent
 - `---` horizontal rules separate major sections; do not use them inside sections
 - No YAML frontmatter block (the repo deliberately does not use it)
 - No "Last updated" line — git history tracks this
@@ -61,11 +62,11 @@ Examples from the repo:
 - `[[AI Agent Design Patterns]]` → links to `AI Agent Design Patterns.md`
 - `[[system design]]` → links to `system design.md` (lowercase OK if filename is lowercase)
 
-**Related line format:**
+**Parent line format:**
 ```
-**Related:** [[A]] | [[B]] | [[C]]
+**Parent:** [[Parent Note]]
 ```
-Pipe-separated, no trailing pipe, no period.
+Exactly one resolved wikilink, no pipe, no period.
 
 **Inline links** within prose or bullets:
 ```
@@ -73,9 +74,9 @@ See [[Kafka]] for the streaming model.
 * Uses [[Consistent Hashing]] to distribute load.
 ```
 
-**Back-linking:** When you create a new note or add a significant section to an existing one, open related notes and add a reciprocal link. Best places:
-1. Their `**Related:**` line (append with ` | [[New Note]]`)
-2. Inside a relevant bullet or paragraph as a natural inline mention
+**Structural links:** Each non-root note has one parent. Do not add a reciprocal parent link; the child-to-parent direction is enough to keep the structural graph tree-shaped.
+
+**Inline links:** Preserve or add ordinary inline links when the prose makes a concrete dependency, comparison, or invitation to a deeper explanation. Do not add broad “see also” lists merely because topics are related.
 
 **Never invent a link target.** Glob `*.md` from the workspace root to confirm a target file exists before linking.
 
@@ -123,7 +124,8 @@ See [[Kafka]] for the streaming model.
 - **No "References" section** unless the URL is genuinely useful to revisit
 - **No "Updated:" timestamps** — use git
 - **No empty wikilinks** `[[]]`
-- **No orphan notes** — every new note must have at least one back-link from an existing note
+- **No orphan notes** — every non-root note must have one resolved `Parent` link
+- **No multi-note Related lists or reciprocal parent links** — they turn hierarchy into a dense graph
 - **No duplicate content** — if information already exists in another note, link to it rather than copy it
 - **No hallucinated facts** — content must come from the source material provided
 - **No motivational padding** — "In today's rapidly evolving landscape…" is banned

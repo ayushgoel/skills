@@ -11,6 +11,8 @@ Maintains a Foam knowledge graph **in the active workspace**. Do not ask for a v
 
 **Default: update existing notes. Create new files only as a last resort.**
 
+The graph has a sparse structural spine. Each non-root note has one parent link; inline links remain available for concrete, reader-useful cross-references.
+
 Reference docs:
 - Style rules and formatting: [`references/foam-conventions.md`](references/foam-conventions.md)
 - Note templates: [`references/note-templates.md`](references/note-templates.md)
@@ -22,7 +24,7 @@ Reference docs:
 ### Step 1 — Find the right home
 
 1. **Confirm scope** — use the workspace root containing `.md` files and hub pages like `_HOME.md`.
-2. **Search for candidates** — run `rg` or `grep` for the topic in filenames, `**Related:**` lines, and `##` headings. No good search string? Glob all `*.md` files.
+2. **Search for candidates** — run `rg` or `grep` for the topic in filenames, `**Parent:**` lines, and `##` headings. No good search string? Glob all `*.md` files.
 3. **Check for parent topics** — if no exact match, ask: *does this content belong inside an existing note as a `##` section?*
 
 **Decision (stop at first match):**
@@ -40,9 +42,9 @@ Reference docs:
 
 1. **Name** — Title Case with spaces (`Vector Databases.md`). No date prefix, no underscores.
 2. **Draft** using the template in `references/note-templates.md`.
-3. **Link** — pick 3–8 genuinely related notes for `**Related:**`.
-4. **Back-link** — open each related note and add a reciprocal `[[wikilink]]`.
-5. **Check `_HOME.md`** — add a wikilink if the topic belongs to an existing section.
+3. **Place in the tree** — choose exactly one `**Parent:**` link. Parent a new top-level domain at `_HOME`; otherwise use the narrowest existing topic that contains it.
+4. **Add inline links selectively** — link only when a sentence names a concrete dependency, comparison, or deeper explanation the reader may need. Do not add a semantic “see also” list.
+5. **Check `_HOME.md`** — add a wikilink only for a new top-level domain.
 6. **Write** — see `references/foam-conventions.md`. Use only information from the source.
 
 ---
@@ -52,16 +54,17 @@ Reference docs:
 1. **Read** the existing note fully before touching it.
 2. **Diff** — identify only information *not already present* (same concept restated = already present).
 3. **Merge** — add new subsections or bullets; do **not** rewrite or reorder existing content.
-4. **Update `**Related:**`** if the source introduces new connections.
+4. **Keep the `**Parent:**` stable** unless the note was genuinely reclassified. Add inline links only where the new prose needs a concrete cross-reference.
 5. **No timestamps** — git history tracks changes.
 
 ---
 
 ### Link Quality Rules
 
-- Every note needs `**Related:**` with at least one `[[wikilink]]`.
+- Every non-root note needs exactly one `**Parent:** [[Existing Note]]`. Root domain notes use `[[_HOME]]`.
 - Glob `*.md` to confirm a file exists before writing any link. Never invent a target.
-- Prefer specific notes over broad hubs (`_HOME.md`) unless the topic truly belongs there.
+- Do not add reciprocal parent links. The child-to-parent link alone forms the structural tree.
+- Keep inline links in prose when they help a reader navigate to necessary detail; prefer specific notes over broad hubs.
 
 ---
 
@@ -86,6 +89,7 @@ Reference docs:
 | Adding YAML frontmatter | The repo has no frontmatter — skip it |
 | Adding "Updated:" timestamps | Git history serves this purpose |
 | Duplicating content that exists in another note | Link to the other note instead |
+| Adding a multi-note `Related` list or reciprocal backlinks | Keep one `Parent` link; retain only concrete inline cross-references |
 
 ---
 
@@ -98,4 +102,5 @@ Reference docs:
 | Insight spanning multiple notes | Update each relevant note |
 | No filename match, parent concept exists | Add `##` section to parent |
 | Genuinely standalone, no parent | New note workflow |
+| Existing topic leaf | Keep its parent unchanged; update only prose and necessary inline links |
 | Source contradicts existing note | Add note under relevant section; don't silently overwrite |
