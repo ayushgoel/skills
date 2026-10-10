@@ -119,8 +119,8 @@ Cut the draft before showing it:
 
 ## Sending
 
-- Return the message text ready to paste, with the target channel or thread
-  named above it.
+- Return the message text ready to paste, with a Slack permalink to the target
+  thread or message above it so the user can open the conversation directly.
 - Create a Slack draft or send only when the user asks. Never send on the
   user's behalf without that request.
 - Do not cross-post the same question to several channels. Pick the one that
