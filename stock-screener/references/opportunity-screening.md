@@ -1,18 +1,27 @@
-# Index-Aware Mid-Cap Opportunity Framework
+# Opportunity Screening And Coverage
 
-Use this framework when the user already owns a broad index core or asks for mid-cap
-opportunities. The aim is active return from under-researched growth and rerating
-windows, not indiscriminate movement down the market-cap spectrum.
+Use this framework for discovery across the requested universe. Include mid caps
+deliberately when relevant, without restricting every mandate to one size band.
 
 ## 1. Define the investable universe
 
-- Use the current official Indian market-cap classification as of the analysis date;
-  do not hardcode rupee cutoffs that become stale.
-- Include the user's index and fund exposure when it is known. Separate overlap with
-  the passive core from genuinely incremental active exposure.
-- Check free float, median traded value, bid-ask spread when available, delivery
-  volume, and promoter/public ownership. Exclude candidates whose realistic position
-  cannot be entered or exited without material market impact.
+- Build the requested universe from its dated official membership source. Use the
+  current official Indian market-cap classification when a size band is in scope;
+  do not substitute an index for an exchange group or hardcode stale rupee cutoffs.
+- Record universe source, date, eligible security classes and hard/soft exclusions.
+  Deduplicate economic securities by ISIN or verified identifiers, not approximate
+  name matching. Resolve renamed tickers and unmatched cross-exchange mappings.
+- Include the user's index and fund exposure when it is known. Show overlap and
+  portfolio suitability after rating investment merit; overlap alone is not a
+  reason to erase an attractive company from the shortlist.
+- Check free float, median traded value over a stated multi-week window, bid-ask
+  spread when available, delivery volume, and promoter/public ownership. Combine
+  relevant NSE/BSE activity for dual-listed Indian stocks. Compare the intended
+  order and exit plan with realistic turnover participation; justify any limit.
+  Calculate the combined median from matched daily venue totals. The sum of
+  separate venue medians is only a proxy and must be labeled as such.
+  One exchange's single-session turnover or a fixed rupee market-cap floor is not
+  sufficient to reject a small order. Missing liquidity evidence is a data gap.
 - State whether the company entered the mid-cap band through business compounding,
   price rerating, demerger, or falling from a larger band. Classification is context,
   not evidence of quality.
@@ -21,6 +30,35 @@ windows, not indiscriminate movement down the market-cap spectrum.
 
 Search beyond current holdings and familiar index constituents. Start with business
 evidence, then valuation; do not rank on recent price CAGR.
+
+Maintain a CSV or structured ledger outside the skill repository with security
+identifier, sector, universe date/source, eligibility, triage status, evidence
+status, decision reason, research state and source links. Report:
+
+| Stage | Required accounting |
+| --- | --- |
+| Raw universe | Dated membership and duplicate/security-class removals |
+| Eligible | Each exclusion and unmatched identifier |
+| Triage | Sector-appropriate metrics, missing data and reason for each result |
+| Research | Which companies were actually underwritten and which remain unreviewed |
+| Finalists | Actionable ideas, near misses, rejected theses and unresolved evidence |
+
+Counts must reconcile. Distinguish eligible, data-complete and researched counts.
+Keep `excluded` as an eligibility result with its mandate reason, not an
+`Exit/Archive` company state. Unreviewed names have no assessed investment merit.
+Use full-universe quantitative triage when data permits; verify finalists against
+primary sources. If access limits coverage, report the researched subset and
+unreviewed remainder. Never infer "no opportunities in the universe" from a
+handpicked list or silently treat missing data as a failed business.
+
+Cover three paths rather than filtering every stock on the same trailing P/E:
+
+1. Durable compounders with attractive reinvestment economics and cash conversion.
+2. Value/income businesses with sustainable normalized cash returns.
+3. Recovery/catalyst businesses with a measurable change and survivable funding.
+
+Check sector variety and investigate promising omissions. An index's aggregate
+valuation or a general concern about small caps does not reject every constituent.
 
 Prefer candidates showing several of these traits:
 
@@ -37,9 +75,10 @@ Prefer candidates showing several of these traits:
 Maintain sector variety in the research funnel, but never lower the quality bar to
 manufacture diversification.
 
-## 3. Apply non-negotiable gates
+## 3. Separate rejection from uncertainty
 
-Reject or label speculative when any of these cannot be resolved:
+Reject or label speculative when material evidence establishes an unacceptable
+risk that cannot be resolved:
 
 - auditor resignation, repeated qualified opinions, opaque subsidiaries, or material
   related-party leakage;
@@ -50,6 +89,10 @@ Reject or label speculative when any of these cannot be resolved:
 - customer, supplier, geography, or product concentration without adequate resilience;
 - debt-funded capex whose base case requires perfect utilization or refinancing;
 - insufficient filings, conference-call evidence, or liquidity for responsible sizing.
+
+Unknown evidence belongs in `Discover`/`Validate`, with the next verification
+named. Investigate pledges and temporary working-capital absorption in context;
+do not mechanically reject a company for any encumbrance or one weak quarter.
 
 Promoter open-market buying can strengthen a passing thesis. It cannot repair a failed
 governance, earnings-quality, or valuation gate.
@@ -120,3 +163,9 @@ normalized record, scenarios, buy range, staged size, catalyst sequence, risks, 
 invalidators with dated sources. Also list serious candidates rejected at the final
 gate and the decisive reason. This prevents a screen from silently becoming a list of
 only attractive stories.
+
+Separate `investment merit`, `evidence maturity`, `current entry attractiveness`
+and `portfolio suitability`. A strong idea can have no suggested allocation under
+the user's restrictions. A near miss can remain a ranked watch rather than be
+described as worthless. If nothing is actionable, state the coverage boundary and
+whether the blocker is valuation, business risk, mandate or incomplete research.

@@ -24,6 +24,21 @@ Reject or downgrade candidates where the story depends primarily on stock-price 
 an unfinanced capex plan, non-binding orders, repeated equity dilution, related-party
 transactions, unexplained receivables, or a peak-cycle annualized quarter.
 
+### Backlog and execution quality
+
+Reconcile headline backlog with firm purchase orders, letters of award, framework
+agreements, MOUs and optional tranches. Record related-party and external orders
+separately, including cancellation rights, customer financing/readiness, deposits,
+collection terms and likely conversion dates where disclosed. Do not count an MOU
+again when it becomes a firm order or assume all stated capacity converts to revenue.
+
+Separate equipment supply, limited-scope EPC, turnkey delivery and recurring service
+revenue. The same ordered capacity can carry different revenue, margin and working-
+capital economics. Test a mix-change thesis against receivables, unbilled revenue,
+inventory, supplier finance and cash collections, not just adjusted EBITDA. Compare
+current guidance with earlier dated guidance and actual delivery without treating one
+timing miss as an automatic thesis failure.
+
 ## 2. Classify the evidence state
 
 Use a state machine rather than a binary buy/sell label:
@@ -51,7 +66,7 @@ For every `Validate`, `Starter`, or `Scale/Add` name, record:
 | --- | --- |
 | Thesis | The causal chain from catalyst to per-share cash earnings |
 | Baseline | Revenue, normalized EPS, margin, net debt, cash conversion, share count |
-| Runway | Addressable demand, capacity, backlog, and realistic conversion period |
+| Runway | Addressable demand, capacity, firm versus optional backlog, related-party share and realistic conversion period |
 | Proof KPIs | Three to six company-specific operating measures |
 | Next catalyst | Dated result, commissioning, approval, order conversion, or deleveraging event |
 | Valuation | Bear/base/bull normalized earnings and conservative exit valuation |
@@ -71,16 +86,19 @@ Enter only when both business evidence and valuation are adequate. Two valid pat
 - **Earnings catch up:** reported results lift normalized earnings and the supported entry
   value while the share price stays broadly stable.
 
-Avoid waiting for every uncertainty to disappear; that often transfers all upside to the
-seller. Instead, size evidence maturity:
+Avoid waiting for every uncertainty to disappear; that often transfers all upside
+to the seller. Repeated confirmation is a scaling condition rather than a blanket
+ban on a starter before the next result. Size evidence maturity:
 
-- `Starter`: normally 0.5–1.5% of the direct-equity portfolio.
+- `Starter`: a small research position whose bear-case loss and order size fit the
+  user's budget and risk capacity; state the allocation denominator explicitly.
 - `Scale/Add`: normally after two consecutive reporting periods confirm the critical
   operating KPI and at least one cash-conversion or balance-sheet KPI.
-- Increase beyond 3% only when liquidity, governance, funding, and downside allow it.
+- Set a maximum only after liquidity, governance, funding, correlated exposures
+  and bear-case loss have been assessed.
 
-These are default research bands, not fixed allocation rules. Use smaller caps for binary
-regulation, customer concentration, leverage, pledging, or weak liquidity.
+Use smaller caps for binary regulation, customer concentration, leverage, pledging
+or weak liquidity. Portfolio-analysis owns the final weight in a combined portfolio.
 
 ## 5. Monitoring and alert logic
 

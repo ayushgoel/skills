@@ -4,8 +4,8 @@ description: >-
   Use when writing, rewriting, or reviewing concise documentation, including
   technical and design docs, PRDs, DACI decisions, runbooks, project updates,
   meeting notes, Confluence pages, and Word or PDF deliverables. Also use when
-  documentation needs tighter structure, source-backed claims, preserved links,
-  or less AI-sounding prose.
+  documentation needs diagrams or images, tighter structure, source-backed
+  claims, preserved links, or less AI-sounding prose.
 ---
 
 # Doc Writer
@@ -31,7 +31,8 @@ Write concise, evidence-based docs with only the sections the reader needs.
 3. Resolve material evidence gaps with local sources or `twg`.
 4. Draft the smallest useful section set for the document type.
 5. Remove repetition, unsupported claims, empty sections, and generic prose.
-6. Verify links, claims, ownership, decisions, and requested output format.
+6. Verify links, claims, visuals, ownership, decisions, and requested output
+   format.
 7. Write or publish only under the mutation rules below.
 
 For long documents, put a linked table of contents after the title or
@@ -136,23 +137,27 @@ Use these as topic budgets, not rigid headings. Merge related topics.
 - Show component roles, boundaries, ownership, or options in tables when useful.
 - Call out deployment, authentication, tenant, policy, data, security, and
   privacy boundaries when relevant.
-- Use Mermaid for architecture, sequence, lifecycle, and rollback flows when it
-  communicates more clearly than prose.
 - Keep raw payloads, exhaustive configuration, and detailed estimates out of the
   main argument unless they determine the decision.
 - For consequential decisions, compare options against explicit factors and
   record ownership and next actions.
 
-## Image Prompts
+## Visuals
 
-Add an image prompt only when a visual would materially shorten or clarify the
-document. Do not generate the image unless explicitly asked.
+Add a visual when it replaces a paragraph of explanation, such as architecture,
+request or data flow, sequence, lifecycle, rollback, or an option comparison.
+Skip decorative images. Use the same terms in labels as in the text.
 
-```markdown
-Image prompt: Create a clean architecture diagram showing [components], [data
-flow], [external dependencies], and [failure or rollback path]. Use labels that
-match the document.
-```
+- Diagrams: write Mermaid. In Markdown, use a fenced `mermaid` block. In
+  Confluence, publish through the site's Mermaid macro as described in
+  [references/confluence-visuals.md](references/confluence-visuals.md).
+- Illustrations and mockups: use the image generation tool only when the user
+  asks for images in the request. Keep text out of generated images and put
+  labels in the caption.
+- Screenshots and charts: use files the user provides, or render charts from
+  the data with code. Do not draw data charts with image generation.
+- Attach and embed image files in Confluence as described in the same
+  reference.
 
 ## Style And Links
 

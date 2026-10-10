@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stock Screener"
+  short_description: "Discover opportunities and evaluate company value"
+  default_prompt: "Use $stock-screener to screen the requested universe, evaluate company fundamentals and return scenarios, and rank actionable opportunities with coverage and uncertainty disclosed."

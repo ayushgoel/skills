@@ -1,4 +1,4 @@
-# Two-Engine Equity Analysis
+# Shared Company Evaluation
 
 Use this framework to connect business evidence to prospective shareholder returns.
 The identity is a tool for disciplined assumptions, not a claim that P/E always
@@ -25,15 +25,22 @@ Price CAGR =
   (1 + EPS CAGR) * (exit P/E / entry P/E)^(1 / years) - 1
 ```
 
-Estimate total shareholder return by adding cash dividends to terminal value. Model
-buybacks through the diluted share count and resulting EPS; do not add the same
-buyback again as cash yield. Separate these outputs:
+Model buybacks through the diluted share count and resulting EPS; do not add the
+same buyback again as cash yield. Separate these outputs:
 
 - EPS CAGR;
 - annualized multiple tailwind or headwind;
 - price CAGR from their multiplicative combination;
 - cumulative dividends per share;
-- annualized total shareholder return.
+- terminal-wealth CAGR, with dividends held as idle cash until exit;
+- cash-flow IRR, with dividends received during the holding period.
+
+Use cash-flow IRR for the default annual return hurdle. Its supported entry value
+discounts each dividend at its payment time and the sale proceeds at exit. This
+differs from discounting all dividend cash as if it arrived at the end. IRR does
+not specify a reinvestment rate; a terminal-wealth calculation must state one if
+dividends are reinvested. Disclose the calculator's year-end payment convention
+and use dated cash flows when payment timing is material.
 
 Do not use this identity with negative, near-zero, or unrepresentative EPS. Avoid
 mixing trailing EPS with a forward multiple or double-counting forecast growth.
@@ -83,6 +90,46 @@ Check:
 Use normalized diluted EPS. Show both reported and normalized figures when the
 reconciliation materially affects the thesis.
 
+Show a reconciliation from reported profit attributable to common shareholders,
+through one-offs and sustainable operating adjustments, to diluted EPS. Keep
+the trailing and forecast periods explicit. A price divided by a vendor's P/E
+is a consistency check, not a verified normalized EPS record. Reconcile company,
+exchange and vendor discrepancies before using a number to justify an action.
+
+Use profit attributable to owners of the parent, not total consolidated PAT
+including non-controlling interests. Reconcile the filing's EPS numerator and
+weighted-average diluted denominator after rights issues, bonuses, splits and
+mergers. Dividing trailing owner profit by today's diluted share count is a useful
+current-share-count diagnostic, but is not reported EPS or a completed earnings
+normalization. Do not silently replace a conflicting filing or call the diagnostic
+sustainable EPS. Keep material unreconciled differences as an evidence gap.
+
+Bridge management-adjusted EBITDA and "cash PAT/profit" to statutory results.
+Deferred-tax and depreciation add-backs do not demonstrate cash collection;
+operating cash flow also reflects working capital and cash taxes. Separate operating
+revenue from other income and remove non-operating fair-value or disposal gains
+with their tax and minority-interest effects. Do not routinely add back credit
+losses, liquidated damages or restructuring expenses that recur in the business.
+
+For "net cash" or "debt-free" claims, check the reporting entity and date. Include
+material supplier financing, leases, redeemable instruments and other debt-like
+obligations, stating the chosen definition. Separate freely usable cash from
+pledged deposits, earmarked issue proceeds and investments with uncertain liquidity;
+do not offset all investments against debt without checking availability.
+
+### Recovery and cyclicality
+
+Identify whether weak earnings reflect a temporary shock, investment phase,
+cyclical trough or structural deterioration. Build the recovery from volume,
+capacity/utilization, margins, interest, taxes and diluted shares. Test the funding
+needed to survive a delay. Do not perpetuate a trough indefinitely by default or
+restore peak margins without evidence. For recovery cases, model year-by-year
+cash flows when a constant EPS CAGR hides the path or funding risk.
+Distinguish near-term revenue lost to a lower-scope product mix from weaker demand,
+and quantify whether the new model actually improves margins, collections and
+capital employed. Seasonal weakness is not proof of failure; repeatedly deferred
+guidance without operational progress is not proof of an imminent recovery.
+
 ## 3. Valuation engine
 
 Rate valuation `tailwind`, `neutral`, `headwind`, or `uncertain`. Do not call a stock
@@ -119,6 +166,10 @@ require.
 
 Use enterprise-value measures when cash and debt materially distort equity multiples.
 Use more than one method when model risk is high.
+
+Document the source and economic rationale for exit valuations. Compare relevant
+peers and the company's history under comparable rates and growth, rather than
+arbitrarily choosing a multiple that makes the return pass.
 
 ## 4. Promoter and insider signal
 
@@ -159,6 +210,11 @@ takeover defense, minimum holding requirements, tax, family settlement, or liqui
 Insider conviction can support an EPS-engine thesis, but operating results and
 valuation must independently support the decision.
 
+For pledges, distinguish percentage of promoter holding from percentage of total
+equity. Investigate amount, trend, collateral purpose, financing entity and
+forced-sale triggers. Mark unverified terms as unknown; a pledge percentage alone
+does not establish fraud or prove that financing risk is immaterial.
+
 ## 5. Scenario construction
 
 Use at least bear, base, and bull cases over the user's horizon. Make scenarios
@@ -170,12 +226,17 @@ For each scenario state:
 - margin, reinvestment, incremental return, and share-count assumptions;
 - exit multiple and why it fits that scenario's growth, risk, and rates;
 - next annual dividend per share and dividend growth when material;
-- terminal price, price CAGR, cumulative dividends, and annualized total return;
+- terminal price, price CAGR, cumulative dividends, terminal-wealth CAGR and IRR;
 - probability only when evidence supports a calibrated estimate.
 
 Run `../scripts/project_returns.py` for P/E-based cases. Use explicit DCF or the
 appropriate sector method when P/E is invalid. Do not force incompatible valuation
 methods into the calculator.
+If normalized earnings or an exit multiple cannot yet be underwritten, a terminal
+EPS/multiple sensitivity may expose what the price requires. Label it illustrative,
+not a validated base case, forecast, downside floor or actionable buy zone. An
+equivalent CAGR calculated backward from terminal EPS does not establish a recovery
+path; connect any actionable case to annual operating drivers and funding needs.
 
 Pass percentage inputs as percentage points (`15` means 15%, not `0.15`):
 
@@ -198,11 +259,11 @@ Pass percentage inputs as percentage points (`15` means 15%, not `0.15`):
 ```
 
 Run `python3 scripts/project_returns.py <input.json>` from the skill directory.
-`next_annual_dividend` is the year-one dividend per share. The calculator sums cash
-dividends without reinvestment, so disclose that convention when dividends are
-material. `hurdle_rate_pct` is optional; when present, the output includes the maximum
-entry price that would meet the hurdle under each scenario. Treat that price as a
-scenario diagnostic, not a target or prediction.
+`next_annual_dividend` is the year-one dividend per share, paid at year-end in the
+model. The calculator reports cash-flow IRR and terminal-wealth CAGR with no
+dividend reinvestment. `hurdle_rate_pct` is optional; when present, the supported
+entry price is the discounted value of yearly dividends and terminal proceeds,
+consistent with cash-flow IRR. Treat it as a scenario diagnostic, not a target.
 
 Stress-test:
 
@@ -211,6 +272,14 @@ Stress-test:
 - higher rates or risk premium;
 - dilution, debt refinancing, or regulatory change;
 - the growth required merely to offset plausible multiple compression.
+
+For an unspecified hurdle, disclose the assumption and compare nearby required
+returns. For a close call, vary growth and exit valuation over evidence-backed
+ranges and calculate the growth required at the current price. A difference of
+one percentage point in modeled return may be smaller than estimation error;
+do not present it as certainty or reduce the hurdle merely to force a purchase.
+State why the assumed hurdle and uncertainty buffer fit the risks being tested;
+do not mechanically discount a speculative target and call the result fair value.
 
 ## 6. Decision matrix
 
@@ -222,7 +291,8 @@ Stress-test:
 | Weak | Headwind | Exit/Avoid candidate unless a credible, underwritten turnaround exists |
 | Uncertain | Any | Watch or use a small research position; demand a wider margin of safety |
 
-Map the matrix to the user's return hurdle and portfolio:
+First rate company merit against the return hurdle, then let portfolio-analysis
+apply holdings, tax and allocation constraints:
 
 - `Add/Initiate`: base return clears the hurdle with acceptable permanent-loss risk.
 - `Hold`: prospective return remains adequate, but the margin of safety or incremental
@@ -235,6 +305,29 @@ Map the matrix to the user's return hurdle and portfolio:
 
 Cost basis is not evidence of value. Use it only for tax, liquidity, and realized-loss
 considerations. Never issue an action solely because price rose or fell by a threshold.
+
+## Company Findings Contract
+
+Use the same findings for a discovery finalist and an existing holding:
+
+- identifier, price/as-of date and current classification;
+- multi-year operating record and reported-to-normalized per-share reconciliation;
+- earnings basis (`reported`, `current-share-count diagnostic`, `normalized` or
+  `provisional`), consolidation perimeter and unresolved reconciliation items;
+- EPS-engine and valuation-engine ratings with high/medium/low confidence;
+- accounting, cash conversion, maintenance capex, leverage and funding risks;
+- promoter transactions, pledge terms/trend and verified capital allocation;
+- sector valuation lens, peer comparison and bear/base/bull driver assumptions;
+- return decomposition, hurdle sensitivity, reverse valuation and entry range;
+- thesis, next catalyst, operating KPIs and explicit invalidators;
+- liquidity/evidence limits on starter and maximum size;
+- research state and dated primary sources, distinguishing estimates and unknowns.
+
+The caller supplies quantities and cost details separately. If evidence is missing,
+state which conclusions remain unvalidated. A compact holdings review may group
+small positions, but do not imply full underwriting where only triage was done.
+Keep source dates, assumptions and review triggers with the findings so the portfolio
+caller can reuse them without silently upgrading confidence or refreshing only price.
 
 ## 7. Source and evidence discipline
 
@@ -255,3 +348,8 @@ unadjusted EPS or prices.
 Label each material statement as reported fact, analyst estimate, management guidance,
 or inference. State conflicting figures and unresolved gaps. Avoid precise return
 promises, undocumented fair multiples, and unsupported claims about investor motives.
+
+For analyst consensus, record provider, analyst count, observation dates and visible
+methodology. A unanimous rating may be stale or cover few analysts; distinguish it
+from the platform's own scorecard and technical signals. Do not invent gated targets,
+and use direct business peers rather than a vendor's broad industry basket.
