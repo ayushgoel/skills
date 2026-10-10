@@ -24,7 +24,7 @@ Reference docs:
 ### Step 1 — Find the right home
 
 1. **Confirm scope** — use the workspace root containing `.md` files and hub pages like `_HOME.md`.
-2. **Search for candidates** — run `rg` or `grep` for the topic in filenames, `**Parent:**` lines, and `##` headings. No good search string? Glob all `*.md` files.
+2. **Search for candidates** — run `rg` or `grep` for the topic in filenames, `**Parent:**` lines, and `##` headings. No good search string? List all notes with `rg --files -g '*.md'`.
 3. **Check for parent topics** — if no exact match, ask: *does this content belong inside an existing note as a `##` section?*
 
 **Decision (stop at first match):**
@@ -62,7 +62,7 @@ Reference docs:
 ### Link Quality Rules
 
 - Every non-root note needs exactly one `**Parent:** [[Existing Note]]`. Root domain notes use `[[_HOME]]`.
-- Glob `*.md` to confirm a file exists before writing any link. Never invent a target.
+- List `*.md` files to confirm a file exists before writing any link. Never invent a target.
 - Do not add reciprocal parent links. The child-to-parent link alone forms the structural tree.
 - Keep inline links in prose when they help a reader navigate to necessary detail; prefer specific notes over broad hubs.
 
@@ -85,7 +85,7 @@ Reference docs:
 |---|---|
 | Creating a new file for every new term | Check for a parent note first — add a `##` section instead |
 | Rewriting existing prose to "improve" it | Merge only; preserve existing wording |
-| Inventing wikilink targets | Glob `*.md` to confirm the file exists first |
+| Inventing wikilink targets | List `*.md` files to confirm the target exists first |
 | Adding YAML frontmatter | The repo has no frontmatter — skip it |
 | Adding "Updated:" timestamps | Git history serves this purpose |
 | Duplicating content that exists in another note | Link to the other note instead |

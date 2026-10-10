@@ -17,7 +17,7 @@ Style guide for the open Foam workspace (scope is the workspace root; see parent
 
 - **Title Case with spaces**: `Vector Databases.md`, `Context Engineering.md`
 - Parentheses are fine for disambiguation: `Artificial Intelligence (AI).md`
-- Hyphens in compound proper nouns only: `API-Security.md`, `12 factor app.md`
+- Hyphens in compound proper nouns only: `API-Security.md`. Legacy names such as `12 factor app.md` stay as they are; link them by exact filename.
 - No date prefixes, no underscores, no numeric IDs
 - The wikilink `[[Vector Databases]]` must exactly match the filename minus `.md`
 
@@ -78,7 +78,7 @@ See [[Kafka]] for the streaming model.
 
 **Inline links:** Preserve or add ordinary inline links when the prose makes a concrete dependency, comparison, or invitation to a deeper explanation. Do not add broad “see also” lists merely because topics are related.
 
-**Never invent a link target.** Glob `*.md` from the workspace root to confirm a target file exists before linking.
+**Never invent a link target.** List `*.md` files from the workspace root (`rg --files -g '*.md'`) to confirm a target file exists before linking.
 
 ---
 

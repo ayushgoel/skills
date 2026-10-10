@@ -46,12 +46,6 @@ Examples in repo: `RAG.md`, `Kafka.md`, `Cache.md`
 
 * **Pros:** {…}
 * **Cons / Limitations:** {…}
-
----
-
-## Related patterns
-
-{Optional. Prose or bullets linking to complementary or competing approaches.}
 ```
 
 ---
@@ -189,7 +183,7 @@ Or, when a note is genuinely reclassified, update its single parent:
 After writing, verify:
 
 - [ ] Non-root note has exactly one resolved `**Parent:** [[wikilink]]`
-- [ ] Every `[[link]]` in the note resolves to a real `.md` file (check with Glob)
+- [ ] Every `[[link]]` in the note resolves to a real `.md` file (check with `rg --files -g '*.md'`)
 - [ ] Parent reflects the narrowest structural category; no reciprocal parent link was added
 - [ ] Inline links are retained or added only where the prose needs a concrete cross-reference
 - [ ] `_HOME.md` is updated only when adding a top-level domain
