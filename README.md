@@ -29,6 +29,7 @@ npx skills add ayushgoel/skills
 | Skill | Use it for |
 | --- | --- |
 | `doc-writer` | Writing and reviewing technical docs, PRDs, design docs, decision records, runbooks, project updates, Confluence content, and Word or PDF deliverables. |
+| `slack-writer` | Drafting Slack replies, DMs, asks, help-channel requests, announcements, and status flags in a short, direct voice. |
 | `write-code` | Implementing focused code changes with proportional planning, systematic debugging, simple design, and risk-based verification. |
 | `review-code` | Analysis-first code, pull-request, technical-plan, and design review, with findings prioritized by severity and production impact. |
 | `kotlin-code-reviewer` | Kotlin-specific review extension covering architecture, idioms, coroutines, libraries, and JVM contracts. |
@@ -38,10 +39,10 @@ npx skills add ayushgoel/skills
 | `stock-screener` | Discovering stock opportunities and evaluating named companies with audited screening coverage, normalized fundamentals, valuation sensitivity, and catalyst research. |
 | `portfolio-analysis` | Reconciling existing stock and fund holdings, assessing combined exposure, and making allocation decisions using stock-screener's shared company evaluator. |
 
-Use `doc-writer`, `write-code`, and `review-code` for routine work. Add
-`kotlin-code-reviewer` when the code under review is Kotlin. Use `twg` for
-company context and `prflow` for direct Bitbucket PR or CI work. The remaining
-skills are task-specific.
+Use `doc-writer`, `slack-writer`, `write-code`, and `review-code` for routine
+work. Add `kotlin-code-reviewer` when the code under review is Kotlin. Use `twg`
+for company context and `prflow` for direct Bitbucket PR or CI work. The
+remaining skills are task-specific.
 
 Install `stock-screener` alongside `portfolio-analysis`; it owns the shared
 company evaluator and return calculator used by portfolio reviews. Stock-screener
