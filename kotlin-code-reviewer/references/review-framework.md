@@ -1,6 +1,6 @@
 # Review Framework
 
-Five levels of analysis. Work top-down: architectural blockers before implementation details.
+Four levels of analysis. Work top-down: architectural blockers before implementation details.
 
 ---
 
@@ -21,11 +21,8 @@ Ask: does this change compromise system integrity?
 Ask: is the right tool being used in the right place?
 
 - **Patterns** — Is the pattern appropriate? (e.g., Strategy vs. Factory; Flow vs. suspend function; Sealed class hierarchy vs. an open class with subclasses).
-- **SOLID** — Single Responsibility (each class/function does one thing); Open-Closed (extension without modification); Liskov substitution.
-- **DRY** — Flag duplication that can be extracted. Prefer delegation and extension functions over copy-paste.
 - **Coroutines** — No blocking calls (`Thread.sleep`, `runBlocking` in a suspend context, synchronous IO) inside coroutine scopes. Prefer `Flow` for multi-value reactive streams; prefer `suspend fun` for single-value async operations.
-- **Null safety** — Flag `!!` (not-null assertions) unless provably safe and commented. Prefer `?.let`, `?: return`, or `requireNotNull` with a message.
-- **AI agent definitions** — When `.md` or `.yaml` agent files are in the diff, flag: prompt ambiguity, hallucination risks, missing safety guardrails, logical loops, brand-voice inconsistencies, and tools missing semantic descriptions.
+- **Null safety** — Report `!!` only when the value can be null on a reachable path in the changed code. Prefer `?.let`, `?: return`, or `requireNotNull` with a message.
 
 ---
 
@@ -41,20 +38,7 @@ Ask: will this break in production?
 
 ---
 
-## 4. AI Agent & Prompt engineering
-
-Apply only when `.md`, `.txt`, or `.yaml` agent/prompt files are in the diff.
-
-- **Prompt clarity** — Is every instruction unambiguous? Could the model interpret it in two contradictory ways?
-- **Token efficiency** — Flag redundant instructions, repeated context, or verbose preamble that wastes tokens.
-- **Hallucination risk** — Does the prompt ask the model to recall facts it cannot reliably know? Add grounding via tool calls or retrieved context.
-- **Logical loops** — Can the agent get stuck in a retry/escalation loop? Ensure exit conditions exist.
-- **Tool descriptions** — Every tool must have a precise semantic description so the LLM knows when and how to call it.
-- **Safety guardrails** — Confirm the prompt includes appropriate refusal or escalation paths for out-of-scope requests.
-
----
-
-## 5. Library-first / minimalist architecture
+## 4. Library-first / minimalist architecture
 
 Ask before approving any new code: *does this need to exist?*
 

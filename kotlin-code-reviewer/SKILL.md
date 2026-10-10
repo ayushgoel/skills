@@ -14,22 +14,7 @@ default, evidence standard, severity order, and final response structure.
 
 ## Select The Diff
 
-For a Bitbucket pull request, use `prflow` to identify the repository, source and
-destination branches, diff, comments, checks, and pipeline state. Use
-`atlas prflow <command> --help` when current flags are uncertain.
-
-For a local branch review:
-
-1. Inspect the current branch, working tree, and configured remotes.
-2. Resolve the remote default branch from `refs/remotes/<remote>/HEAD` or remote
-   metadata. Do not assume it is `main`.
-3. Compare the merge-base range with three-dot syntax:
-   `git diff <default-ref>...<review-head>`.
-4. Fetch only when current remote state is required and the user has asked for a
-   current branch or PR review. Do not alter the working tree.
-
-If the intended base cannot be established reliably, state the ambiguity instead
-of silently selecting a branch.
+Use the review scope established by `review-code`.
 
 ## Kotlin Review Workflow
 

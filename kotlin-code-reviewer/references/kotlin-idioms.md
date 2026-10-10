@@ -30,7 +30,7 @@ val name = user?.name ?: "Unknown"
 val name = requireNotNull(user) { "User must not be null at this stage" }.name
 ```
 
-Flag every `!!` — it must be accompanied by a comment proving it cannot be null, or replaced.
+Report `!!` only when the value can be null on a reachable path in the changed code. When the invariant is real, suggest `requireNotNull(x) { "reason" }`.
 
 ---
 
@@ -51,13 +51,7 @@ var s = ""; for (item in list) { if (s.isNotEmpty()) s += ", "; s += item }
 // ✅
 val s = list.joinToString(", ")
 
-// ❌ filtering then mapping separately (two passes)
-list.filter { it.isActive }.map { it.name }
-
-// ✅ single pass
-list.mapNotNull { if (it.isActive) it.name else null }
-// or
-list.asSequence().filter { it.isActive }.map { it.name }.toList() // for large lists
+// Use asSequence() for large or lazily consumed chains when intermediate lists are measurable.
 ```
 
 ---
@@ -90,7 +84,7 @@ GlobalScope.launch { doWork() }
 viewModelScope.launch { doWork() }
 ```
 
-Prefer `Flow` for streams of values; `suspend fun` for a single async result. Flag `Channel` usage where `Flow` suffices.
+Prefer `Flow` for streams of values; `suspend fun` for a single async result.
 
 ---
 
@@ -147,13 +141,13 @@ val moved = point.copy(x = point.x + 1)
 ```kotlin
 // ❌ Java-style static utility
 object StringUtils {
-    fun capitalize(s: String): String = ...
+    fun toSlug(s: String): String = ...
 }
-StringUtils.capitalize(name)
+StringUtils.toSlug(name)
 
 // ✅ extension function, reads naturally
-fun String.capitalize(): String = ...
-name.capitalize()
+fun String.toSlug(): String = ...
+name.toSlug()
 ```
 
 Only create extension functions in the same module where the type is used most. Avoid polluting global scope with broad extensions on `Any`, `String`, or `List`.
