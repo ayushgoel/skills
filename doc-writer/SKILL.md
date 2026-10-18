@@ -12,6 +12,32 @@ description: >-
 
 Write concise, evidence-based docs with only the sections the reader needs.
 
+## Choose Document Guidance
+
+Choose guidance by what the reader needs to do, not just the page title. Read
+the closest reference; combine references when the document genuinely serves
+more than one purpose. These are starting points, not an exhaustive taxonomy.
+
+| Reader's need | Reference |
+| --- | --- |
+| Evaluate options or make a decision, including a DACI | [Decision documents](references/decision-documents.md) |
+| Understand the reasoning and consequences of a single decision, including an ADR or LDR | [Decision records](references/decision-records.md) |
+| Scan or track decisions across a project or domain | [Decision registers](references/decision-registers.md) |
+| Solve a concrete problem and explain how the solution works | [Design documents](references/design-documents.md) |
+| Agree on expected product or system behavior | [Requirements](references/requirements.md) |
+| Establish the principles and non-variable constraints a project follows | [Principles documents](references/principles-documents.md) |
+| Understand the project's future vision and intended outcomes | [North star documents](references/north-star-documents.md) |
+| Understand a system or topic at an appropriate level | [Overviews and introductions](references/overviews.md) |
+| Assess an existing proposal, its risks, or its effort | [Reviews and assessments](references/reviews-and-assessments.md) |
+| Look up terms, contracts, or related sources | [Reference documents](references/reference-documents.md) |
+| Coordinate work or capture progress, meetings, and follow-ups | [Plans and working notes](references/plans-and-working-notes.md) |
+
+Use the shared guidance for other document types. For example, a runbook should
+help an operator recognize the trigger, diagnose, mitigate, and verify recovery.
+Follow the user's format and useful existing conventions. Choose headings,
+order, length, and level of detail for the audience and task; references do not
+require a fixed layout or a section for every suggested topic.
+
 ## Destination And Evidence
 
 - Infer the destination from the request, page URL, referenced page, open file, or
@@ -34,9 +60,6 @@ Write concise, evidence-based docs with only the sections the reader needs.
 6. Verify links, claims, visuals, ownership, decisions, and requested output
    format.
 7. Write or publish only under the mutation rules below.
-
-For long documents, put a linked table of contents after the title or
-one-sentence summary. Skip it when the document is already easy to scan.
 
 ## File Deliverables
 
@@ -70,83 +93,45 @@ For Confluence writes:
 - Use `twg help` or `twg help describe` when the current command grammar or write
   contract is uncertain.
 
-Use Confluence tables for comparisons, ownership, timelines, decisions, or
-status. Use expand, status, info, note, and warning macros only when they improve
-scanning or change reader behavior.
+Use native Confluence tables when comparisons, ownership, timelines, decisions,
+or status benefit from tabular presentation. Use expand, status, info, note,
+and warning macros only when they improve scanning or change reader behavior.
 
-## Document Suites And Review Comments
+## Related Pages And Review Comments
 
-- Give each page one job. Pillar pages lead with the target state, summarize the
-  current state briefly, name the gaps, and link to the work log for execution.
-  Do not turn a direction-setting page into an exhaustive inventory.
-- Keep action items, owners, targets, and status in one work log. Link to it from
-  narrative pages instead of duplicating action tables across the suite.
+- Keep each page's purpose clear. Link to the owning requirements, design,
+  decision record, or work plan rather than duplicating material that will drift.
+- Reuse the suite's existing place for tracking actions and status. Do not
+  create a work log merely to satisfy a document convention.
 - If the user marks that work log or another page as manually owned, treat it as
   read-only. Collect exact follow-up items in the handoff for the owner to add.
-- Treat an answered review comment as a decision. Update every affected page,
-  remove the item from open questions, and add any implementation work to the
-  work log.
+- Distinguish a reviewer's suggestion from an agreed decision. When incorporating
+  an agreed answer, reconcile affected content within the requested scope and
+  identify follow-ups for other pages or owners.
 - Move content to the page where readers need it under pressure. For example,
   operational kill switches belong with incident response, while the service
   overview should link to them.
-- Resolve comments only after re-reading the published pages and checking that
-  cross-links, terminology, decisions, and work-log actions agree.
+- Resolve comments only when requested and after checking that the published
+  content addresses them and related links and decisions agree.
 
-## PRD Mode
+## Appendices
 
-Use PRD mode for product or feature requirements. Gather known context from the
-conversation and linked company evidence before asking questions. Ask only for
-missing information that blocks a useful draft, and mark unresolved details as
-`TBD` rather than inventing them.
-
-Select from these topics rather than treating them as a fixed template:
-
-- problem, users, proposed outcome, goals, and non-goals
-- user journeys, stories, and testable acceptance criteria
-- functional and non-functional requirements
-- measurable success metrics and guardrail metrics
-- dependencies, constraints, rollout, risks, and open questions
-- for AI features: model and tool boundaries, grounding data, evaluation,
-  safety, privacy, latency, and cost
-
-Requirements must be observable or testable. Replace words such as "fast",
-"easy", or "intuitive" with a measurable threshold or an explicit `TBD`.
-
-## Document Topic Budgets
-
-Use these as topic budgets, not rigid headings. Merge related topics.
-
-- High-level design: summary, objective, goals and non-goals, context,
-  requirements, architecture, components, trust boundaries, lifecycle,
-  alternatives, observability, rollout, rollback, security, risks, open
-  questions, references
-- Deep technical design: context, architecture, invariants, data design,
-  components, interfaces, feature gates, migration, implementation phases,
-  constraints, risks, references
-- DACI decision: status, impact, driver, approver, recommendation, contributors,
-  informed, due date, evidence, decision factors, options, outcome, actions
-- Runbook: trigger, severity, impact, diagnostics, mitigation, verification,
-  troubleshooting, follow-up
-- Project update: summary, status, progress, risks, decisions needed, next steps
-- Meeting notes: summary, decisions, actions, open questions
-
-## Technical And Decision Docs
-
-- State the key recommendation, invariant, or system behavior early.
-- Explain the path from user action to system response.
-- Show component roles, boundaries, ownership, or options in tables when useful.
-- Call out deployment, authentication, tenant, policy, data, security, and
-  privacy boundaries when relevant.
-- Keep raw payloads, exhaustive configuration, and detailed estimates out of the
-  main argument unless they determine the decision.
-- For consequential decisions, compare options against explicit factors and
-  record ownership and next actions.
+- Give each appendix its own heading, `Appendix #N: <Title>`,
+  numbered in the order the body refers to them.
+- Use appendices for background, evidence, and requirement sources that support
+  the document but would slow the main argument. Keep context that determines
+  the reader's decision in the main discussion.
+- Place them where they fit the document, usually after the main discussion.
+  Match heading levels to the destination's hierarchy.
+- Refer to them clearly by name or a working link. Recheck links after renaming
+  or moving headings.
 
 ## Visuals
 
-Add a visual when it replaces a paragraph of explanation, such as architecture,
-request or data flow, sequence, lifecycle, rollback, or an option comparison.
-Skip decorative images. Use the same terms in labels as in the text.
+Design documents include explanatory diagrams or images that show the solution.
+For other documents, add visuals when they improve understanding, such as
+architecture, request or data flow, sequence, lifecycle, rollback, or an option
+comparison. Skip decorative images. Use the same terms in labels as in the text.
 
 - Diagrams: write Mermaid. In Markdown, use a fenced `mermaid` block. In
   Confluence, publish through the site's Mermaid macro as described in
@@ -162,11 +147,16 @@ Skip decorative images. Use the same terms in labels as in the text.
 ## Style And Links
 
 - Prefer short paragraphs, concrete bullets, and system-specific language.
+- Make the main point easy to find early, with enough context to understand it.
 - Do not add sections just because a template contains them.
 - Do not repeat the same idea across the summary, context, and conclusion.
 - Avoid em dashes, adjacent hyphens, semicolons, and stock AI phrasing.
 - Link descriptive words instead of pasting bare URLs.
 - Put a source link next to a sourced claim. Add a final `References` section
   only when a consolidated source list helps the reader.
+- Add a linked table of contents near the opening when it helps readers navigate
+  a long document. Skip it when the document is already easy to scan.
+- Use tables, panels, and expands where they improve understanding. Keep
+  essential rationale and risks visible; reserve warning panels for real risks.
 - Do not end with a generic conclusion. End with the decision, owner, or next
   action when one exists.

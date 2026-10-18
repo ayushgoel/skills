@@ -38,6 +38,9 @@ A common app renders a code block chosen by position. Its block looks like this:
 </details>
 ```
 
+- Keep the source accessible without distracting from the rendered diagram.
+  An expand directly after the macro is useful; choose a descriptive title
+  suited to the page, such as `Diagram source`.
 - `guestParams.index` is the zero-based position of the source among all code
   blocks on the page, including non-Mermaid ones. Put the source right after the
   macro, so the index equals the number of code blocks earlier on the page.
@@ -64,8 +67,9 @@ For a different app, follow the parameter shape of the copied block instead.
 </figure>
 ```
 
-Use width 80 for diagrams and charts, 60 for screenshots, and 40 to 50 for small
-images.
+Choose image width for legibility in the page layout. Dense diagrams may need
+more width than small screenshots; preserve useful existing sizing and check
+that labels remain readable.
 
 ## Verify
 
