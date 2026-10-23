@@ -12,6 +12,10 @@ out work, checking progress, or recovering what happened in a discussion.
   estimate, a proposed assignment, and a commitment; leave missing facts visible.
 - Reuse an existing work log or tracker when it owns execution. Link to it from
   narrative updates instead of maintaining competing action tables.
+- Keep active plans and task lists current and lean. Remove stale or completed
+  execution detail from active work lists while retaining useful completion
+  evidence and unresolved questions. Preserve historical context in meeting
+  notes and decision records.
 - For a coordination proposal, distinguish proposed changes from actions already
   completed and identify whose agreement is still needed. Writing the proposal
   does not authorize the actions it describes.
