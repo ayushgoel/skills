@@ -20,6 +20,7 @@ pull-request and pipeline work.
   cross-product company context.
 - Local `git`, `rg`, and repository-native build tools own local source changes,
   branches, and verification.
+- `git-workflow` owns commit boundaries, branch dependencies, and stack delivery.
 
 Use TWG to discover linked requirements or decisions, then return to PRFlow for
 the Bitbucket action.
@@ -98,6 +99,10 @@ Use the narrow command and inspect its live help:
 | Sync with destination | `sync` |
 | Create, draft, ready, or decline | `pr` |
 | Enroll for merge when ready | `mogin` |
+
+When creating a PR or changing a stack's branch relationships, use
+`git-workflow` to establish change boundaries, destinations, and dependencies.
+Return to PRFlow for the authorized Bitbucket mutation.
 
 Before approving or merging, read `pr status` and `pr checks`. Surface failed or
 missing checks, open tasks, unresolved actionable threads, stale state, and

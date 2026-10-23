@@ -16,8 +16,9 @@ existing codebase.
 
 - Inspect the relevant code, tests, repository guidance, and working-tree state
   before editing.
-- State assumptions that affect behavior. Ask only when a missing decision cannot
-  be recovered from the codebase or available context.
+- Resolve intent, requirements, and constraints from available context. When
+  they remain unclear, ask a focused question before implementing affected
+  behavior; do not substitute an unconfirmed assumption for a requirement.
 - Prefer established project patterns, dependencies, and domain language.
 - Do not add features, configurability, abstractions, or broad cleanup beyond the
   request.
@@ -31,6 +32,10 @@ short plan before editing when the change has dependent steps, unclear
 requirements, a wide blast radius, an unfamiliar architecture, or material
 security, migration, or rollback risk. The plan should expose decisions and
 dependencies, not restate routine work.
+
+Keep the plan ordered and actionable, with blockers, unresolved decisions, and
+next actions explicit. Update an existing plan rather than creating duplicate
+tracking documents.
 
 Challenge an assumption when repository evidence contradicts it or a simpler
 solution meets the same outcome. Do not turn ordinary implementation into a
@@ -67,6 +72,8 @@ claim verification that was not performed.
 ## Design
 
 - Prefer the simplest design that satisfies current requirements.
+- Do not retain obsolete identifiers or compatibility layers solely for
+  historical continuity. Preserve compatibility required by an actual contract.
 - Choose in this order: extend the existing code, use the standard library or
   platform, use an already-approved dependency, then write the smallest new
   implementation. Add a dependency only when its benefit justifies its
@@ -92,6 +99,8 @@ claim verification that was not performed.
   changes, check affected callers and run broader tests.
 - For narrow internal changes, focused tests are sufficient when the blast
   radius is demonstrably small.
+- Use a direct check when it establishes the result. Broaden verification only
+  when affected contracts or unresolved risk justify it.
 - When a check fails, determine whether the change caused it. Do not rewrite
   unrelated code merely to make the suite green.
 
@@ -102,15 +111,11 @@ claim verification that was not performed.
 - Prefer code that explains itself.
 - Comment non-obvious intent, constraints, invariants, or consequences. Remove
   restatements and commented-out code introduced by the change.
+- Mention Jira tickets or other work items in code comments only when the
+  comment is an actionable TODO.
 
-## Commits
+## Change Delivery
 
-Commit only when the user asks. Keep each requested commit logical,
-self-contained, and working.
-
-- Use an imperative, capitalized subject of at most 50 characters with no period.
-- The subject should complete: "If applied, this commit will ..."
-- Add a body when needed, separated by a blank line and wrapped near 72
-  characters.
-- Explain what changed and why. The diff already shows how.
-- Split unrelated changes instead of forcing them under one subject.
+Use `git-workflow` for requested commits, branch preparation, or stacked pull
+requests. It owns change boundaries, branch relationships, and commit
+conventions. An implementation request alone does not authorize publishing.
