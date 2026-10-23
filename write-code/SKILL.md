@@ -33,9 +33,11 @@ requirements, a wide blast radius, an unfamiliar architecture, or material
 security, migration, or rollback risk. The plan should expose decisions and
 dependencies, not restate routine work.
 
-Keep the plan ordered and actionable, with blockers, unresolved decisions, and
-next actions explicit. Update an existing plan rather than creating duplicate
-tracking documents.
+Keep the plan and task list current, lean, ordered, and actionable, with blockers,
+unresolved decisions, and next actions explicit. Remove stale or completed
+execution detail from the active work list while retaining useful completion
+evidence. Update an existing plan rather than creating duplicate tracking
+documents.
 
 Challenge an assumption when repository evidence contradicts it or a simpler
 solution meets the same outcome. Do not turn ordinary implementation into a
