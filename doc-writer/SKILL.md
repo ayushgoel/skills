@@ -106,6 +106,19 @@ Use native Confluence tables when comparisons, ownership, timelines, decisions,
 or status benefit from tabular presentation. Use expand, status, info, note,
 and warning macros only when they improve scanning or change reader behavior.
 
+For Confluence tables:
+
+- Turn on numbered rows (`data-number-column="true"`) for every table whose rows
+  are items, such as milestones, work items, actions, decisions, requirements,
+  risks, and comparison factors. Never add a manual `#` column. Skip numbering
+  for key-value tables, such as a page's header details.
+- Size every column. Set `data-colwidth` on each cell so a column's width
+  matches its content and the widths add up to the table's `data-width`, which
+  is 760 at default width and 1800 at full width. Give descriptive text the
+  widest column, and keep status, estimate, owner, and date columns narrow.
+- Use the same widths for tables of the same kind on a page. After publishing,
+  re-fetch the page and check numbering and widths on every table.
+
 ## Related Pages And Review Comments
 
 - Keep each page's purpose clear. Link to the owning requirements, design,
