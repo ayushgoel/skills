@@ -1,6 +1,6 @@
 # Note Templates
 
-Copy-paste templates for creating and updating notes in the open Foam workspace (paths are relative to the workspace root; see parent `SKILL.md`, **Overview**).
+Optional structures for creating and updating notes in the active Foam workspace. Use only the sections the material needs; do not add empty or repetitive sections to match a template. Resolve placeholders to real filenames and headings before writing links.
 
 ---
 
@@ -147,38 +147,32 @@ Examples in repo: `AI Agent Design Patterns.md`, `CQRS.md`, `12 factor app.md`
 
 ---
 
-## Examples
+## Appendix #1: Worked example
 
-{Concrete scenario or code sketch illustrating the pattern.}
+{Substantial scenario or code sketch, with its assumptions and sources. Keep each diagram beside the step or explanation it illustrates. Refer to this appendix from the main body. Brief clarifying examples may instead remain inline.}
 ```
 
 ---
 
-## Template 4 — Update Patch (not a file template)
+## Template 4 — Integrating existing notes
 
-When **updating** an existing note, only write the new fragment to insert — never rewrite the whole note. Use this shape:
+Read the whole note and search related notes before editing. Merge new information into its canonical section, consolidating overlapping explanations. Preserve unique facts, caveats, sources, and useful images. Reorder or rewrite existing prose when necessary to restore topic boundaries.
 
-```markdown
-## {New Section Heading}
-
-{New content derived from the source. Same style as the surrounding note.}
-```
-
-Or, for a new bullet inside an existing section:
+Use this optional structure for a substantial supporting example:
 
 ```markdown
-* **{New Term}** — {definition from source}
+The worked implementation is in [[Existing Note#Appendix #1: Implementation example|Appendix #1: Implementation example]].
+
+## Appendix #1: Implementation example
+
+{Case-specific context, assumptions, implementation, evidence, sources, and images.}
 ```
 
-Or, when a note is genuinely reclassified, update its single parent:
-
-```markdown
-**Parent:** [[New Parent]]
-```
+Keep conceptual material in the body and foreign subjects in their existing owning notes. Do not split a note or impose a word limit merely because it is long.
 
 ---
 
-## Linking Checklist (for both new and update workflows)
+## Verification checklist (for both new and update workflows)
 
 After writing, verify:
 
@@ -188,4 +182,12 @@ After writing, verify:
 - [ ] Inline links are retained or added only where the prose needs a concrete cross-reference
 - [ ] `_HOME.md` is updated only when adding a top-level domain
 - [ ] No YAML frontmatter was added
-- [ ] No duplicate content from an existing note
+- [ ] Whole-note topic coherence reviewed; no duplicated conceptual explanation
+- [ ] Substantial examples support the topic and sit in referenced, numbered appendices
+- [ ] Moved material retains unique meaning, sources, assumptions, and caveats
+- [ ] Each image remains beside its specific explanation; illustrated subsections were not replaced by a detached gallery
+- [ ] Image targets resolve and previously referenced images remain referenced, unless an authorized deletion accounts for them
+- [ ] Any orphan-asset cleanup stayed within scope; exact duplicates were verified before deletion
+- [ ] Heading links still resolve after moves or renames
+
+For image inspection, placement, and authorized cleanup, use the [image rules](foam-conventions.md#image-placement-and-cleanup). Inventory counts complement a contextual review; neither replaces the other.

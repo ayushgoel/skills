@@ -1,6 +1,6 @@
 # Foam Repo Conventions
 
-Style guide for the open Foam workspace (scope is the workspace root; see parent `SKILL.md`, **Overview**). Notes use a sparse parent tree for structure and selective inline links for reader navigation.
+Style guide for the active Foam workspace; the parent `SKILL.md` defines the capture and curation workflow. Notes use a sparse parent tree for structure and selective inline links for reader navigation.
 
 ## Table of Contents
 
@@ -105,6 +105,8 @@ See [[Kafka]] for the streaming model.
 
 ## 5. Formatting rules
 
+Keep definitions, mechanisms, constraints, trade-offs, and general procedures in the main body. Substantial supporting cases belong in numbered, body-referenced appendices. A different subject belongs in its existing owning note. Preserve unique information and source links while consolidating; length alone does not justify splitting or shortening a note.
+
 | Element | Convention |
 |---|---|
 | Bold | `**term**` — key concept, first use |
@@ -115,6 +117,18 @@ See [[Kafka]] for the streaming model.
 | Numbered lists | For ordered steps or ranked items |
 | Bullet lists | For unordered collections |
 | Heading levels | `##` for major sections, `###` for sub-sections; never skip levels |
+
+### Image placement and cleanup
+
+Treat a figure and the explanation it illustrates as one editorial unit. Move them together when reordering sections or moving a case into an appendix. Check the actual image and surrounding text before choosing a new home. Do not replace contextual placement with a gallery; preserve existing groups only when they illustrate the same explanation. Use descriptive alt text without inventing claims absent from the image or source.
+
+For an authorized image cleanup:
+
+1. Find both broken image references and unreferenced image files. Search the relevant Markdown, HTML, styles, configuration, and other repository consumers before calling an asset unused. Ignore Git internals and generated dependency directories.
+2. Inspect each unreferenced image. Search existing notes for the precise subject and place useful figures beside the matching explanation. Add only enough source-grounded prose to make the figure understandable; do not force an unrelated home or create a new note merely to retain an asset.
+3. If the image duplicates an existing figure, verify identical bytes or hashes before treating it as an exact duplicate. Keep the already-referenced copy. Visually similar images may contain different details.
+4. Delete an unused or redundant asset only when deletion is within the user's authorized scope. Otherwise report it; an ordinary capture request does not authorize purging old assets. Do not rename or delete useful assets for cosmetic consistency.
+5. Recheck every remaining image target and all affected references after placement or deletion. Review local figure context as well as the inventory. Report retained, deleted, and unresolved items separately.
 
 ---
 
