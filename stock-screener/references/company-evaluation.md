@@ -220,6 +220,34 @@ does not establish fraud or prove that financing risk is immaterial.
 Use at least bear, base, and bull cases over the user's horizon. Make scenarios
 internally consistent rather than changing only the exit multiple.
 
+### Match the actual holding period
+
+Use the latest user-confirmed horizon in every model and delegate handoff. When
+it changes, recompute earnings/book/embedded value, dividends, exit valuation and
+entry ranges over that period; do not relabel a longer-horizon return or retain
+its entry range without re-underwriting. Historical recommendations retain their
+original horizon. Do not store a user's personal horizon as a universal skill
+preference.
+
+For a short horizon such as two years, show the operating path through each year,
+when catalysts can affect per-share cash earnings, and the funding needed before
+then. Benefits beginning after the planned exit belong outside the explicit base
+case. Reflect their remaining duration and risk in the exit valuation instead of
+assuming the business is fully mature at exit. Stress delayed execution and a
+lower exit multiple even when the long-run business remains sound. If cash is
+needed at a fixed date, assess drawdown and liquidity suitability separately from
+expected return.
+
+Identify what could produce returns beyond market/sector participation: evidenced
+per-share growth, cash distributions, balance-sheet repair or a dated operational
+change. Show the earnings/book growth, dividends and multiple-change contributions.
+FII inflows and a general market recovery can support a scenario but do not prove
+a company-specific edge. Flat exit multiples alone do not prove one either.
+Compare plausible outcomes with a dated passive/peer alternative on consistent
+horizons and return conventions; do not invent its future return. Classify a
+recovery with weak company evidence as conditional rather than making a small
+position compensate for an unvalidated thesis.
+
 For each scenario state:
 
 - revenue and normalized diluted EPS CAGR;
@@ -319,7 +347,8 @@ Use the same findings for a discovery finalist and an existing holding:
 - promoter transactions, pledge terms/trend and verified capital allocation;
 - sector valuation lens, peer comparison and bear/base/bull driver assumptions;
 - return decomposition, hurdle sensitivity, reverse valuation and entry range;
-- thesis, next catalyst, operating KPIs and explicit invalidators;
+- thesis, horizon-matched operating path and catalyst timing, operating KPIs and
+  explicit invalidators;
 - liquidity/evidence limits on starter and maximum size;
 - research state and dated primary sources, distinguishing estimates and unknowns.
 

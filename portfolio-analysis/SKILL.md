@@ -3,7 +3,8 @@ name: portfolio-analysis
 description: >-
   Analyze existing stock and mutual-fund holdings, including CSV portfolios,
   reconcile values and fund look-through, assess concentration and risk, and
-  prioritize tax-aware hold/add/trim/exit decisions. Uses stock-screener's shared
+  prioritize tax-aware hold/add/trim/exit decisions and audit prior recommendations.
+  Uses stock-screener's shared
   company evaluator for fundamentals and valuation; discovery of new stocks is
   delegated to stock-screener when requested.
 ---
@@ -49,6 +50,10 @@ findings; do not infer normalized earnings from a new quote and an old vendor P/
    constraints, return hurdle and portfolio boundary. Include disclosed mutual
    funds, ETFs and externally held equity. Missing constraints are assumptions
    to disclose; do not invent a risk profile or declare reserves deployable.
+   Carry the latest confirmed horizon into delegated research and saved local
+   mandate data. A changed horizon requires new valuations and catalyst timing;
+   preserve prior reports and their original assumptions. Distinguish a review
+   horizon from a hard cash-withdrawal date rather than assuming either.
 2. Reconcile the holdings before recommending trades. For CSVs, use structured
    parsing, extract identifier, quantity/units and acquisition cost, remove
    zero-quantity rows and combine duplicates using weighted acquisition cost.
@@ -117,6 +122,26 @@ findings; do not infer normalized earnings from a new quote and an old vendor P/
   outcome or reverse a view merely because price moved.
 - Honor purchase restrictions without treating held excluded stocks as automatic
   sells. Read-only analysis does not authorize execution of trades.
+
+## Recommendation Records And Review
+
+For new actionable calls, keep a dated recommendation ledger beside the private
+portfolio evidence, with the decision time/timezone, action, executable conditions,
+horizon, sizing basis, thesis, review/expiry conditions and preselected benchmarks.
+Preserve revisions as new observations. Missing historical details remain unknown;
+never reconstruct a convenient entry or recast a watchlist as a purchase.
+
+When asked to assess past advice, read
+[Recommendation audit](references/recommendation-audit.md). Separate research
+quality, execution and investment outcomes. Report the complete requested cohort,
+including sells, unfilled limits and cash, before judging success. A rising stock
+or a modeled return does not establish skill or outperformance.
+
+For fresh allocations, state why the active idea merits the incremental risk and
+cost relative to a suitable passive alternative. Size from portfolio exposure,
+downside and evidence strength; label judgmental weights as such. A narrow modeled
+return advantage can be estimation noise, and a small starter is not a substitute
+for a completed company thesis.
 
 ## Output
 
