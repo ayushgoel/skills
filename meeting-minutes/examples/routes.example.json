@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "context": {
+    "loomAccountId": null,
+    "slackWorkspaceId": null
+  },
+  "mappings": [
+    {
+      "pattern": "Platform weekly",
+      "channelId": null,
+      "disabled": true
+    },
+    {
+      "pattern": "Operations handover",
+      "channelId": null,
+      "disabled": true
+    }
+  ]
+}

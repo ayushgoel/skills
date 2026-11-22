@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "context": {
+    "loomAccountId": null,
+    "slackWorkspaceId": null
+  },
+  "lastSuccessfulScanAt": null,
+  "videos": {}
+}

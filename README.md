@@ -30,6 +30,7 @@ npx skills add ayushgoel/skills
 | --- | --- |
 | `doc-writer` | Writing and reviewing technical docs, PRDs, design docs, decision records, runbooks, project updates, Confluence content, and Word or PDF deliverables. |
 | `slack-writer` | Drafting Slack replies, DMs, asks, help-channel requests, announcements, and status flags in a short, direct voice. |
+| `meeting-minutes` | Turning Loom meeting recordings into English Slack minutes with quality checks, explicit routing, and approval before sending. |
 | `write-code` | Implementing focused code changes with proportional planning, systematic debugging, simple design, and risk-based verification. |
 | `git-workflow` | Preparing commits, branches, and stacked pull requests with coherent change boundaries and additive history. |
 | `review-code` | Analysis-first code, pull-request, technical-plan, and design review, with findings prioritized by severity and production impact. |
