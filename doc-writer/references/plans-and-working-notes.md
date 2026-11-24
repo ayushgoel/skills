@@ -1,8 +1,9 @@
 # Plans And Working Notes
 
-Use for work plans, coordination proposals, progress updates, meeting notes,
-and planning-session records. Match the shape to whether the reader is carrying
-out work, checking progress, or recovering what happened in a discussion.
+Use for work plans, coordination proposals, progress updates, and planning-session
+working records. For finished meeting minutes and recaps, use
+[meeting notes](meeting-notes.md). Match the shape to whether the reader is
+carrying out work or checking progress.
 
 ## Support The Next Useful Action
 
@@ -22,9 +23,9 @@ out work, checking progress, or recovering what happened in a discussion.
 
 ## Preserve The Meaning Over Time
 
-- For meeting notes, retain the date and useful discussion context. Separate
-  decisions, actions, and unresolved questions from suggestions or brainstorming.
-  Use chronological notes or a thematic summary according to the intended use.
+- When turning discussion into a plan, distinguish confirmed commitments from
+  suggestions or brainstorming. Published meeting notes follow the shared
+  decision-and-action selection guidance, not a chronological discussion recap.
 - For recurring notes, preserve the difference between historical discussion and
   current status. Later evidence may close a question without changing what the
   earlier meeting recorded.

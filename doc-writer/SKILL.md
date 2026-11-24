@@ -39,7 +39,8 @@ more than one purpose. These are starting points, not an exhaustive taxonomy.
 | Understand a system or topic at an appropriate level | [Overviews and introductions](references/overviews.md) |
 | Assess an existing proposal, its risks, or its effort | [Reviews and assessments](references/reviews-and-assessments.md) |
 | Look up terms, contracts, or related sources | [Reference documents](references/reference-documents.md) |
-| Coordinate work or capture progress, meetings, and follow-ups | [Plans and working notes](references/plans-and-working-notes.md) |
+| Record important meeting decisions and action items | [Meeting notes](references/meeting-notes.md) |
+| Coordinate work or capture progress and follow-ups | [Plans and working notes](references/plans-and-working-notes.md) |
 
 Use the shared guidance for other document types. For example, a runbook should
 help an operator recognize the trigger, diagnose, mitigate, and verify recovery.

@@ -30,7 +30,7 @@ npx skills add ayushgoel/skills
 | --- | --- |
 | `doc-writer` | Writing and reviewing technical docs, PRDs, design docs, decision records, runbooks, project updates, Confluence content, and Word or PDF deliverables. |
 | `slack-writer` | Drafting Slack replies, DMs, asks, help-channel requests, announcements, and status flags in a short, direct voice. |
-| `meeting-minutes` | Turning Loom meeting recordings into English Slack minutes with quality checks, explicit routing, and approval before sending. |
+| `meeting-minutes` | Updating a specified notes page from a supplied Loom recording, using doc-writer for the notes and slack-writer for requested recaps. |
 | `write-code` | Implementing focused code changes with proportional planning, systematic debugging, simple design, and risk-based verification. |
 | `git-workflow` | Preparing commits, branches, and stacked pull requests with coherent change boundaries and additive history. |
 | `review-code` | Analysis-first code, pull-request, technical-plan, and design review, with findings prioritized by severity and production impact. |
@@ -45,6 +45,11 @@ Use `doc-writer`, `slack-writer`, `write-code`, and `review-code` for routine wo
 Install `stock-screener` alongside `portfolio-analysis`; it owns the shared
 company evaluator and return calculator used by portfolio reviews. Stock-screener
 also works independently for discovery or named-stock research.
+
+Install `doc-writer` alongside `meeting-minutes`; it owns the shared meeting-note
+style, examples, and native Confluence task/date formatting. Meeting-minutes asks
+for the recording and notes-page links and coordinates the update. Use
+`slack-writer` for an optional requested recap.
 
 ## Public Repository Safety
 
